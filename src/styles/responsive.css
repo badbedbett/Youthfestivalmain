@@ -202,13 +202,36 @@ html {
   margin: 0 auto;
 }
 
-.hero-partner-logo {
+.hero-partner-logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: clamp(24px, 7vw, 36px);
-  object-fit: contain;
-  object-position: center;
+  min-height: clamp(40px, 11vw, 52px);
+  padding: clamp(4px, 1.2vw, 8px) clamp(2px, 0.8vw, 6px);
+}
+
+.hero-partner-logo-cell svg {
+  width: auto;
+  height: clamp(30px, 9vw, 42px);
+  max-width: 100%;
   display: block;
-  margin: 0 auto;
+}
+
+.hero-partner-logo-cell--wide svg {
+  height: clamp(28px, 8.5vw, 38px);
+}
+
+.hero-partner-logo-cell--tall svg {
+  height: clamp(34px, 10vw, 46px);
+}
+
+.hero-partner-logo-cell--uram svg {
+  height: clamp(26px, 8vw, 36px);
+}
+
+.hero-partner-logo-cell--beeline svg {
+  height: clamp(30px, 9vw, 40px);
 }
 
 .section-display-title,
@@ -359,22 +382,38 @@ html {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: repeat(2, auto);
-    column-gap: clamp(10px, 3vw, 18px);
-    row-gap: clamp(14px, 4vw, 22px);
+    column-gap: clamp(6px, 2vw, 12px);
+    row-gap: clamp(18px, 5vw, 28px);
     width: 100%;
     align-items: center;
-    justify-items: center;
-    padding-top: clamp(14px, 4vw, 20px);
+    justify-items: stretch;
+    padding-top: clamp(18px, 5vw, 28px);
     border-top: 1px solid rgba(255, 255, 255, 0.35);
   }
 
-  .hero-partner-logo {
-    height: clamp(22px, 6.5vw, 34px);
-    max-width: 100%;
+  .hero-partner-logo-cell {
+    min-height: clamp(44px, 12vw, 58px);
+    padding: clamp(6px, 1.5vw, 10px) clamp(2px, 0.6vw, 4px);
   }
 
-  .hero-partner-logo--uram {
-    height: clamp(20px, 6vw, 30px);
+  .hero-partner-logo-cell svg {
+    height: clamp(34px, 10.5vw, 48px);
+  }
+
+  .hero-partner-logo-cell--wide svg {
+    height: clamp(32px, 10vw, 44px);
+  }
+
+  .hero-partner-logo-cell--tall svg {
+    height: clamp(38px, 11.5vw, 52px);
+  }
+
+  .hero-partner-logo-cell--uram svg {
+    height: clamp(30px, 9.5vw, 42px);
+  }
+
+  .hero-partner-logo-cell--beeline svg {
+    height: clamp(34px, 10.5vw, 46px);
   }
 
   .program-section-location {
