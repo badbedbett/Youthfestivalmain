@@ -204,16 +204,11 @@ html {
 
 .hero-partner-logo {
   width: 100%;
-  height: 100%;
-  max-height: clamp(36px, 10vw, 52px);
+  height: clamp(24px, 7vw, 36px);
   object-fit: contain;
   object-position: center;
   display: block;
-}
-
-.hero-partner-logo--alabuga,
-.hero-partner-logo--rosmolodezh {
-  max-height: clamp(32px, 9vw, 48px);
+  margin: 0 auto;
 }
 
 .section-display-title,
@@ -362,28 +357,24 @@ html {
 
   .hero-ogos-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: clamp(10px, 3vw, 16px) clamp(8px, 2.5vw, 14px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    column-gap: clamp(10px, 3vw, 18px);
+    row-gap: clamp(14px, 4vw, 22px);
     width: 100%;
     align-items: center;
-    padding-top: clamp(8px, 2vw, 12px);
+    justify-items: center;
+    padding-top: clamp(14px, 4vw, 20px);
     border-top: 1px solid rgba(255, 255, 255, 0.35);
   }
 
-  .hero-ogos-grid > :nth-child(-n + 3) {
-    grid-column: span 4;
-  }
-
-  .hero-ogos-grid > :nth-child(n + 4):nth-child(-n + 6) {
-    grid-column: span 4;
-  }
-
-  .hero-ogos-grid > :nth-child(n + 7):nth-child(-n + 10) {
-    grid-column: span 3;
+  .hero-partner-logo {
+    height: clamp(22px, 6.5vw, 34px);
+    max-width: 100%;
   }
 
   .hero-partner-logo--uram {
-    max-height: clamp(44px, 12vw, 60px);
+    height: clamp(20px, 6vw, 30px);
   }
 
   .program-section-location {
