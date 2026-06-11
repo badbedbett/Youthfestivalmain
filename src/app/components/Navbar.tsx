@@ -4,7 +4,7 @@ import LogoSvg from './LogoSvg'
 const links = [
   { label: 'О событии', href: '#about' },
   { label: 'Программа', href: '#programs' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Вопросы', href: '#faq' },
 ]
 
 export default function Navbar() {
