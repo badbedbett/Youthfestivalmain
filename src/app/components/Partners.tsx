@@ -41,15 +41,22 @@ const tiers = [
   },
   {
     key: 'info',
-    label: 'Информационные партнёры и в рамках:',
+    label: 'Информационные партнёры',
     accent: '#FFDF00',
     partners: [
-      { name: 'info-1', logo: infoLogo1, logoHeight: 34 }, // 124×102 AR1.2 → ~40px wide
-      { name: 'info-2', logo: infoLogo2, logoHeight: 34 }, // 98×111 AR0.88 → ~30px wide
       { name: 'info-3', logo: infoLogo3, logoHeight: 20 }, // 169×43 AR3.9 → ~79px wide
       { name: 'info-4', logo: infoLogo4, logoHeight: 26 }, // 119×58 AR2.1 → ~53px wide
       { name: 'info-5', logo: infoLogo5, logoHeight: 26 }, // 149×72 AR2.1 → ~54px wide
       { name: 'info-6', logo: infoLogo6, logoHeight: 26 }, // 115×72 AR1.6 → ~41px wide
+    ],
+  },
+  {
+    key: 'framework',
+    label: 'в рамках:',
+    accent: '#BF00FF',
+    partners: [
+      { name: 'info-1', logo: infoLogo1, logoHeight: 34 }, // 124×102 AR1.2 → ~40px wide
+      { name: 'info-2', logo: infoLogo2, logoHeight: 34 }, // 98×111 AR0.88 → ~30px wide
     ],
   },
 ]

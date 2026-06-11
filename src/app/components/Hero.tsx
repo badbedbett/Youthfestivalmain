@@ -15,7 +15,7 @@ export default function Hero() {
       style={{
         height: '100vh',
         minHeight: 620,
-        background: 'linear-gradient(105deg, #BF00FF 0%, #E8362D 28%, #F18500 62%, #FFDF00 100%)',
+        background: 'linear-gradient(110.643deg, #BF00FF 7.735%, #E8362D 31.403%, #F18500 60.144%, #FFDF00 92.265%)',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
@@ -42,7 +42,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Top bar: logo only */}
+      {/* Top bar: logo */}
       <div
         style={{
           position: 'relative',
@@ -79,7 +79,7 @@ export default function Hero() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          paddingBottom: '8vh',
+          paddingBottom: 'clamp(80px, 10vh, 120px)',
         }}
       >
         {/* Date + venue block */}
@@ -107,7 +107,8 @@ export default function Hero() {
               padding: '14px 32px',
               borderRadius: 8,
               transition: 'transform 0.15s, box-shadow 0.2s',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+              whiteSpace: 'nowrap',
             }}
             onMouseEnter={e => {
               const t = e.currentTarget
@@ -117,7 +118,7 @@ export default function Hero() {
             onMouseLeave={e => {
               const t = e.currentTarget
               t.style.transform = 'translateY(0)'
-              t.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)'
+              t.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
             }}
           >
             ЗАРЕГИСТРИРОВАТЬСЯ →
@@ -127,7 +128,7 @@ export default function Hero() {
             style={{
               background: 'rgba(255,255,255,0.15)',
               backdropFilter: 'blur(8px)',
-              border: '2px solid rgba(255,255,255,0.55)',
+              border: '1.6px solid rgba(255,255,255,0.55)',
               cursor: 'pointer',
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 14,
@@ -136,6 +137,7 @@ export default function Hero() {
               padding: '12px 28px',
               borderRadius: 8,
               transition: 'background 0.2s',
+              whiteSpace: 'nowrap',
             }}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.25)')}
             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')}
@@ -145,6 +147,27 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Bottom: divider + partner logos */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 3,
+          maxWidth: 1280,
+          width: '100%',
+          margin: '0 auto',
+          padding: '0 48px 24px',
+          boxSizing: 'border-box',
+          flexShrink: 0,
+        }}
+      >
+        <OgosLogosSvg
+          style={{
+            width: '100%',
+            height: 'auto',
+            display: 'block',
+          }}
+        />
+      </div>
     </section>
   )
 }

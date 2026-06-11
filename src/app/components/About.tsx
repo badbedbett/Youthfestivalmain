@@ -1,6 +1,6 @@
 const stats = [
   { value: '27 ИЮНЯ', label: 'дата праздника', color: '#E8362D' },
-  { value: '10 000+', label: 'участников', color: '#F18500' },
+  { value: '100 000+', label: 'участников', color: '#F18500' },
   { value: '8', label: 'направлений', color: '#BF00FF' },
   { value: 'КАЗАНЬ', label: 'экстрим-парк «УРАМ»', color: '#E8362D' },
 ]
