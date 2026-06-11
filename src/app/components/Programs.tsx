@@ -1,68 +1,69 @@
 import { useState } from 'react'
+import imgSport from '../../imports/Programs-3/9094ae3209686501b4233b8d4f3745a7de5a16cd.png'
+import imgPatriot from '../../imports/Programs-3/9397c02078566ffa751dfc29d4982bec700ad1e0.png'
+import imgKariera from '../../imports/Programs-3/e10e0cf1d120e35a8ec723414c9199f84d7c090d.png'
+import imgHealth from '../../imports/Programs-3/188008d5b35365ce93ead45f93d8c3c7e802b9e7.png'
+import imgEdu from '../../imports/Programs-3/9d929ecfd33c4e2f7854dc8703eb6fcc3a1a055f.png'
+import imgStage from '../../imports/Programs-3/fdbbcf20b2121c510dcf2afc7a1d6b28b3635961.png'
+import imgInteractive from '../../imports/Programs-3/ce185d5db449e5eceef820bdcc231de7bd868c5b.png'
+import imgPartners from '../../imports/Programs-3/0aa4f49f034a014e6205f276c766f998f7d3feab.png'
 
 const programs = [
   {
     id: 1,
     title: 'Спорт',
     time: '10:00 – 19:00',
-    desc: 'BMX, самокат, воркаут, паркур, ролики, баскетбол 3×3, джиу-джитсу и другие дисциплины.',
+    desc: 'ВМХ, самокат, воркаут, паркур, ролики, баскетбол 3×3, джиу-джитсу и другие дисциплины.',
     color: '#E8362D',
-    img: 'https://images.unsplash.com/photo-1769905228212-858fc034c051?w=560&h=340&fit=crop&auto=format',
-    emoji: '🏆',
+    img: imgSport,
   },
   {
     id: 2,
     title: 'Патриотика',
     time: '10:00 – 19:00',
-    desc: 'Выставки, встречи с ветеранами, мастер-классы по историческому фехтованию.',
+    desc: 'Полоса препятствий, трасса полётов для FPV, зона тактической стрельбы.',
     color: '#F18500',
-    img: 'https://images.unsplash.com/photo-1558008258-3256797b43f3?w=560&h=340&fit=crop&auto=format',
-    emoji: '🛡️',
+    img: imgPatriot,
   },
   {
     id: 3,
     title: 'Карьера',
     time: '10:00 – 19:00',
-    desc: 'Ярмарка вакансий, воркшопы от ведущих компаний страны, нетворкинг.',
+    desc: 'Ярмарка трудоустройства, зоны собеседований, индустриальный показ моды, карьерные консультации.',
     color: '#FFDF00',
-    img: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?w=560&h=340&fit=crop&auto=format',
-    emoji: '💼',
+    img: imgKariera,
   },
   {
     id: 4,
     title: 'Здоровье',
     time: '12:00 – 19:00',
-    desc: 'Зона ЗОЖ, открытые тренировки, йога, медитация, нутрициологи.',
+    desc: 'Комплексная проверка здоровья, экспресс-тестирование на ВИЧ, короткие свидания с врачами.',
     color: '#BF00FF',
-    img: 'https://images.unsplash.com/photo-1773693416417-4f8eb5dde699?w=560&h=340&fit=crop&auto=format',
-    emoji: '⚡',
+    img: imgHealth,
   },
   {
     id: 5,
     title: 'Образование',
     time: '13:00 – 19:00',
-    desc: 'Лекции, дискуссии, демонстрация программ вузов и колледжей страны.',
+    desc: 'Образовательные и просветительские лекции, мотивационные встречи.',
     color: '#BF00FF',
-    img: 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=560&h=340&fit=crop&auto=format',
-    emoji: '🎓',
+    img: imgEdu,
   },
   {
     id: 6,
     title: 'Главная сцена',
     time: '13:00 – 22:00',
-    desc: 'Концерты, шоу-программа, звёздные гости и большой финальный концерт.',
+    desc: 'Выступление местных артистов, показательные шоу и главные хэдлайнеры события.',
     color: '#E8362D',
-    img: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=560&h=340&fit=crop&auto=format',
-    emoji: '🎤',
+    img: imgStage,
   },
   {
     id: 7,
     title: 'Интерактивные площадки',
-    time: '10:00 – 22:00',
-    desc: 'VR-зоны, квесты, творческие мастерские, арт-объекты и перформансы.',
+    time: '12:00 – 22:00',
+    desc: 'VR-зоны, квесты, творческие мастерские, арт-объекты.',
     color: '#F18500',
-    img: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=560&h=340&fit=crop&auto=format',
-    emoji: '✨',
+    img: imgInteractive,
   },
   {
     id: 8,
@@ -70,8 +71,7 @@ const programs = [
     time: '10:00 – 22:00',
     desc: 'Пространства от ведущих партнёров: активности, розыгрыши, эксклюзив.',
     color: '#FFDF00',
-    img: 'https://images.unsplash.com/photo-1742735190545-2d2c91c0f7a5?w=560&h=340&fit=crop&auto=format',
-    emoji: '🤝',
+    img: imgPartners,
   },
 ]
 
@@ -139,7 +139,6 @@ export default function Programs() {
           </h2>
         </div>
 
-        {/* Static 4×2 grid — no carousel */}
         <div
           style={{
             display: 'grid',
@@ -211,19 +210,17 @@ export default function Programs() {
               </div>
 
               <div style={{ padding: '18px 20px 24px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                  <h3
-                    style={{
-                      fontFamily: '"Dela Gothic One", cursive',
-                      fontSize: 17,
-                      color: '#000000',
-                      margin: 0,
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {p.title}
-                  </h3>
-                </div>
+                <h3
+                  style={{
+                    fontFamily: '"Dela Gothic One", cursive',
+                    fontSize: 17,
+                    color: '#000000',
+                    margin: '0 0 8px',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {p.title}
+                </h3>
                 <p
                   style={{
                     fontFamily: '"Inter", sans-serif',

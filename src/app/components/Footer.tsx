@@ -123,7 +123,7 @@ export default function Footer() {
                   marginBottom: 6,
                 }}
               >
-                экстрим-парк «УРАМ»
+                Экстрим-парк «УРАМ»
               </div>
               <div style={{ fontFamily: '"Inter", sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.6 }}>
                 Кремлёвская набережная, 33
@@ -148,20 +148,14 @@ export default function Footer() {
                 Контакты
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {[
-                  { label: 'Сайт', value: 'деньмолодёжи.рф' },
-                  { label: 'Email', value: 'info@деньмолодёжи.рф' },
-                  { label: 'Телефон', value: '+7 (843) 000-00-00' },
-                ].map(c => (
-                  <div key={c.label}>
-                    <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 12, color: 'rgba(255,255,255,0.65)' }}>
-                      {c.label}:{' '}
-                    </span>
-                    <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 14, color: '#FFFFFF' }}>
-                      {c.value}
-                    </span>
-                  </div>
-                ))}
+                <div>
+                  <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 12, color: 'rgba(255,255,255,0.65)' }}>
+                    Сайт:{' '}
+                  </span>
+                  <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 14, color: '#FFFFFF' }}>
+                    деньмолодёжи.рф
+                  </span>
+                </div>
               </div>
             </div>
 
