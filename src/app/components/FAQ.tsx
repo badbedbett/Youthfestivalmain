@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { linkifyText } from '../utils/linkifyText'
 
 const faqs: { q: string; a: string; multiline?: boolean }[] = [
   {
@@ -174,7 +175,7 @@ export default function FAQ() {
                   <div style={{ padding: '0 24px 22px' }}>
                     <div style={{ height: 1, background: 'rgba(241,133,0,0.15)', marginBottom: 14 }} />
                     <p className="faq-answer-text" style={{ fontFamily: '"Inter", sans-serif', fontSize: 15, color: '#333333', lineHeight: 1.75, margin: 0, whiteSpace: faq.multiline ? 'pre-wrap' : 'normal' }}>
-                      {faq.a}
+                      {linkifyText(faq.a)}
                     </p>
                   </div>
                 </div>

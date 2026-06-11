@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
+import { linkifyText } from '../utils/linkifyText'
 
 export type ProgramActivity = {
   id: number
@@ -271,7 +272,7 @@ export default function ProgramSection({
                               whiteSpace: typeof act.desc === 'string' ? 'pre-wrap' : 'pre-line',
                             }}
                           >
-                            {act.desc}
+                            {typeof act.desc === 'string' ? linkifyText(act.desc) : act.desc}
                           </p>
                         )}
 
