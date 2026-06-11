@@ -1,6 +1,6 @@
 import { HorseBackground } from './HorseBackground'
 import LogoSvg from './LogoSvg'
-import DateBlockSvg from './DateBlockSvg'
+import HeroDateBlock from './HeroDateBlock'
 import OgosLogosSvg from './OgosLogosSvg'
 
 export default function Hero() {
@@ -57,14 +57,7 @@ export default function Hero() {
 
         {/* Date + CTA — stacked under logo, not vertically centered */}
         <div className="hero-main">
-          <DateBlockSvg
-            className="hero-date"
-            style={{
-              width: 'clamp(200px, 28vw, 320px)',
-              height: 'auto',
-              display: 'block',
-            }}
-          />
+          <HeroDateBlock className="hero-date" />
 
           <div className="hero-cta">
             <button
@@ -127,8 +120,9 @@ export default function Hero() {
           <div className="hero-ogos-wrap">
             <OgosLogosSvg className="hero-ogos hero-ogos--full" />
             <div className="hero-ogos-mobile" aria-hidden="false">
-              <OgosLogosSvg variant="top" className="hero-ogos-row" />
-              <OgosLogosSvg variant="bottom" className="hero-ogos-row" />
+              <OgosLogosSvg variant="mobile-3" className="hero-ogos-row hero-ogos-row--3" />
+              <OgosLogosSvg variant="mobile-3b" className="hero-ogos-row hero-ogos-row--3" />
+              <OgosLogosSvg variant="mobile-4" className="hero-ogos-row hero-ogos-row--4" />
             </div>
           </div>
         </div>

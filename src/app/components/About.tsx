@@ -90,14 +90,14 @@ export default function About() {
               </span>
             </div>
             <h2
-              className="section-display-title"
+              className="section-display-title about-section-title"
               style={{
                 fontFamily: '"Dela Gothic One", cursive',
                 fontSize: 'clamp(38px, 5.5vw, 76px)',
-                lineHeight: 1.05,
+                lineHeight: 1.12,
                 color: '#000000',
                 margin: 0,
-                letterSpacing: '-0.02em',
+                letterSpacing: 0,
               }}
             >
               ГЛАВНЫЙ

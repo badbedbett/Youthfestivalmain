@@ -18,7 +18,7 @@ type ProgramSectionProps = {
   title: string
   titleClassName?: string
   timeRange: string
-  location?: string
+  location?: ReactNode
   activities: ProgramActivity[]
   expandedMaxHeight?: number
 }
@@ -28,7 +28,7 @@ export default function ProgramSection({
   title,
   titleClassName = 'gradient-text-warm',
   timeRange,
-  location = 'Экстрим-парк «УРАМ» · Кремлёвская набережная, 33',
+  location,
   activities,
   expandedMaxHeight = 2000,
 }: ProgramSectionProps) {
@@ -115,10 +115,11 @@ export default function ProgramSection({
               style={{
                 fontFamily: '"Dela Gothic One", cursive',
                 fontSize: 'clamp(42px, 6vw, 88px)',
-                lineHeight: 1.05,
+                lineHeight: 1.12,
                 margin: 0,
-                letterSpacing: '-0.02em',
+                letterSpacing: 0,
                 color: '#000000',
+                maxWidth: '100%',
               }}
             >
               <span className={titleClassName}>{title}</span>
@@ -136,15 +137,23 @@ export default function ProgramSection({
               {timeRange}
             </div>
             <p
+              className="program-section-location"
               style={{
                 fontFamily: '"Inter", sans-serif',
                 fontSize: 15,
                 color: '#666666',
                 lineHeight: 1.6,
                 marginTop: 8,
+                marginBottom: 0,
               }}
             >
-              {location}
+              {location ?? (
+                <>
+                  Экстрим-парк «УРАМ»
+                  <br />
+                  Кремлёвская набережная, 33
+                </>
+              )}
             </p>
           </div>
         </div>
@@ -296,37 +305,30 @@ export default function ProgramSection({
                         )}
 
                         {act.partners && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                            <span
-                              style={{
-                                fontFamily: '"Inter", sans-serif',
-                                fontSize: 11,
-                                color: '#666666',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.1em',
-                                fontWeight: 600,
-                              }}
-                            >
+                          <div className="accordion-partners">
+                            <span className="accordion-partners-label">
                               При поддержке:
                             </span>
-                            {act.partners.map((p, i) => (
-                              <div
-                                key={i}
-                                className="accordion-partner-badge"
-                                style={{
-                                  background: '#FFFFFF',
-                                  border: '2px solid #F18500',
-                                  borderRadius: 8,
-                                  padding: '6px 16px',
-                                  fontFamily: '"Dela Gothic One", cursive',
-                                  fontSize: 13,
-                                  color: '#E8362D',
-                                  letterSpacing: '0.04em',
-                                }}
-                              >
-                                {p}
-                              </div>
-                            ))}
+                            <div className="accordion-partner-badges">
+                              {act.partners.map((p, i) => (
+                                <div
+                                  key={i}
+                                  className="accordion-partner-badge"
+                                  style={{
+                                    background: '#FFFFFF',
+                                    border: '2px solid #F18500',
+                                    borderRadius: 8,
+                                    padding: '6px 16px',
+                                    fontFamily: '"Dela Gothic One", cursive',
+                                    fontSize: 13,
+                                    color: '#E8362D',
+                                    letterSpacing: '0.04em',
+                                  }}
+                                >
+                                  {p}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>

@@ -7,14 +7,20 @@ export default function OgosLogosSvg({
 }: {
   style?: React.CSSProperties
   className?: string
-  variant?: 'full' | 'top' | 'bottom'
+  variant?: 'full' | 'top' | 'bottom' | 'mobile-3' | 'mobile-3b' | 'mobile-4'
 }) {
   const viewBox =
     variant === 'top'
       ? '0 0 1734 70'
       : variant === 'bottom'
         ? '0 70 1734 70'
-        : '0 0 1734 140'
+        : variant === 'mobile-3'
+          ? '0 0 1040 70'
+          : variant === 'mobile-3b'
+            ? '1040 0 694 70'
+            : variant === 'mobile-4'
+              ? '0 70 1734 70'
+              : '0 0 1734 140'
 
   return (
     <svg

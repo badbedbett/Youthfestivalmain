@@ -94,7 +94,7 @@ export default function Footer() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
+              gridTemplateColumns: '1fr 1fr',
               gap: 48,
               paddingTop: 48,
               borderTop: '1px solid rgba(255,255,255,0.25)',
@@ -130,33 +130,6 @@ export default function Footer() {
                 Кремлёвская набережная, 33
                 <br />
                 Казань, Республика Татарстан
-              </div>
-            </div>
-
-            {/* Contacts */}
-            <div>
-              <div
-                style={{
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: 11,
-                  color: '#FFDF00',
-                  fontWeight: 700,
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  marginBottom: 14,
-                }}
-              >
-                Контакты
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div>
-                  <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 12, color: 'rgba(255,255,255,0.65)' }}>
-                    Сайт:{' '}
-                  </span>
-                  <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 14, color: '#FFFFFF' }}>
-                    деньмолодёжи.рф
-                  </span>
-                </div>
               </div>
             </div>
 

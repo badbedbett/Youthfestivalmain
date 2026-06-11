@@ -154,6 +154,37 @@ html {
   overflow: visible;
 }
 
+.hero-date-mobile {
+  display: none;
+}
+
+.hero-date-day {
+  font-family: "ALS Granate", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(52px, 14vw, 72px);
+  line-height: 0.9;
+  color: #fefe8c;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.hero-date-venue {
+  font-family: "ALS Granate", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 4.2vw, 22px);
+  line-height: 1.2;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.hero-date-address {
+  font-family: "ALS Granate", "Inter", sans-serif;
+  font-size: clamp(15px, 4vw, 20px);
+  line-height: 1.25;
+  color: #ffffff;
+}
+
 .hero-ogos-mobile {
   display: none;
 }
@@ -173,15 +204,46 @@ html {
   overflow: visible;
 }
 
+/* Accordion partners — label on its own line */
+.accordion-partners {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.accordion-partners-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.accordion-partner-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
 /* Mobile typography & overflow fixes */
 @media (max-width: 768px) {
   .section-display-title {
-    font-size: clamp(28px, 8.5vw, 44px) !important;
-    line-height: 1.12 !important;
+    font-size: clamp(22px, 6.2vw, 34px) !important;
+    line-height: 1.14 !important;
     letter-spacing: 0 !important;
     max-width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
+    hyphens: auto;
+  }
+
+  .program-section .section-display-title {
+    font-size: clamp(20px, 5.6vw, 30px) !important;
+    line-height: 1.1 !important;
   }
 
   .gradient-text-warm,
@@ -191,9 +253,10 @@ html {
     width: auto;
     max-width: 100%;
     margin: 0;
-    padding: 0.04em 0;
+    padding: 0;
     overflow-wrap: anywhere;
     word-break: break-word;
+    hyphens: auto;
   }
 
   .sport-header > div:last-child > div:first-child {
@@ -266,6 +329,14 @@ html {
     padding-bottom: clamp(16px, 3vw, 28px) !important;
   }
 
+  .hero-date-desktop {
+    display: none !important;
+  }
+
+  .hero-date-mobile {
+    display: block;
+  }
+
   .hero-ogos--full {
     display: none !important;
   }
@@ -273,15 +344,41 @@ html {
   .hero-ogos-mobile {
     display: flex;
     flex-direction: column;
-    gap: clamp(14px, 4vw, 22px);
+    gap: clamp(12px, 3.5vw, 18px);
     width: 100%;
   }
 
   .hero-ogos-row {
     width: 100%;
-    height: clamp(56px, 16vw, 80px);
     min-height: unset;
     display: block;
+  }
+
+  .hero-ogos-row--3 {
+    height: clamp(52px, 15vw, 68px);
+  }
+
+  .hero-ogos-row--4 {
+    height: clamp(48px, 13vw, 60px);
+  }
+
+  .program-section-location {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .sport-header {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .sport-header > div {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .about-section-title {
+    font-size: clamp(22px, 6.2vw, 34px) !important;
   }
 }
 
