@@ -78,10 +78,11 @@ export default function FAQ() {
             </span>
           </div>
           <h2
+            className="section-display-title"
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(40px, 5vw, 72px)',
-              lineHeight: 0.92,
+              lineHeight: 1.05,
               color: '#000000',
               margin: 0,
               letterSpacing: '-0.02em',

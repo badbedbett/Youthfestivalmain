@@ -131,10 +131,11 @@ export default function Programs() {
             </span>
           </div>
           <h2
+            className="section-display-title"
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(36px, 5vw, 72px)',
-              lineHeight: 0.92,
+              lineHeight: 1.05,
               color: '#000000',
               margin: 0,
               letterSpacing: '-0.02em',
@@ -183,6 +184,8 @@ export default function Programs() {
                 <img
                   src={p.img}
                   alt={p.title}
+                  loading="eager"
+                  decoding="async"
                   onError={e => {
                     e.currentTarget.style.display = 'none'
                   }}

@@ -1,4 +1,6 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import ProgramImage from './ProgramImage'
+import { preloadImages } from '../utils/preloadImages'
 
 export type ProgramActivity = {
   id: number
@@ -31,9 +33,30 @@ export default function ProgramSection({
   expandedMaxHeight = 2000,
 }: ProgramSectionProps) {
   const [openId, setOpenId] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const urls = activities.map(a => a.img)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          preloadImages(urls)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '500px' }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [activities])
 
   return (
     <section
+      ref={sectionRef}
       id={id}
       className="section-pad program-section"
       style={{
@@ -88,10 +111,11 @@ export default function ProgramSection({
               </span>
             </div>
             <h2
+              className="section-display-title"
               style={{
                 fontFamily: '"Dela Gothic One", cursive',
                 fontSize: 'clamp(42px, 6vw, 88px)',
-                lineHeight: 0.9,
+                lineHeight: 1.05,
                 margin: 0,
                 letterSpacing: '-0.02em',
                 color: '#000000',
@@ -306,11 +330,7 @@ export default function ProgramSection({
 
                       {act.img && (
                         <div className="accordion-image" style={{ borderRadius: 10, overflow: 'hidden', height: 160 }}>
-                          <img
-                            src={act.img}
-                            alt={act.title}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                          />
+                          <ProgramImage src={act.img} alt={act.title} />
                         </div>
                       )}
                     </div>

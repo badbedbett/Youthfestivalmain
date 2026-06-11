@@ -1,13 +1,21 @@
 import React from 'react'
 
-export default function OgosLogosSvg({ style }: { style?: React.CSSProperties }) {
+export default function OgosLogosSvg({
+  style,
+  className,
+}: {
+  style?: React.CSSProperties
+  className?: string
+}) {
   return (
     <svg
       viewBox="0 0 1734 140"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
+      className={className}
       style={style}
+      aria-label="Логотипы партнёров и организаторов"
     >
 <path d="M0 70L1732 70.0002" stroke="white" strokeMiterlimit="10"/>
 <path d="M433 32.7191V42.1843H436.089V32.7191H439.089V29.918H430V32.7191H433Z" fill="white"/>

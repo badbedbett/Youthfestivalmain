@@ -53,7 +53,7 @@ export default function Hero() {
           maxWidth: 1280,
           width: '100%',
           margin: '0 auto',
-          padding: '116px 48px 0',
+          padding: '100px 48px 0',
           boxSizing: 'border-box',
           flexShrink: 0,
         }}
@@ -61,7 +61,7 @@ export default function Hero() {
         <LogoSvg
           variant="light"
           style={{
-            height: 'clamp(180px, 24vw, 340px)',
+            height: 'clamp(130px, 17vw, 240px)',
             width: 'auto',
             display: 'block',
           }}
@@ -165,13 +165,9 @@ export default function Hero() {
           flexShrink: 0,
         }}
       >
-        <OgosLogosSvg
-          style={{
-            width: '100%',
-            height: 'auto',
-            display: 'block',
-          }}
-        />
+        <div className="hero-ogos-wrap">
+          <OgosLogosSvg className="hero-ogos" />
+        </div>
       </div>
     </section>
   )

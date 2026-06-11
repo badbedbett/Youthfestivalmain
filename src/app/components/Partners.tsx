@@ -118,10 +118,11 @@ export default function Partners() {
             </span>
           </div>
           <h2
+            className="section-display-title"
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(36px, 5vw, 72px)',
-              lineHeight: 0.92,
+              lineHeight: 1.05,
               color: '#000000',
               margin: 0,
               letterSpacing: '-0.02em',
@@ -168,10 +169,16 @@ export default function Partners() {
               <div
                 style={
                   tier.key === 'org'
-                    ? { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }
-                    : { display: 'flex', flexWrap: 'wrap', gap: 10 }
+                    ? { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10, alignItems: 'stretch' }
+                    : {
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+                        gap: 10,
+                        alignItems: 'stretch',
+                        justifyItems: 'center',
+                      }
                 }
-                className={tier.key === 'org' ? 'partners-org-grid' : undefined}
+                className={tier.key === 'org' ? 'partners-org-grid' : 'partners-tier-grid'}
               >
                 {tier.partners.map(p => {
                   const lp = p as { name: string; logo: string; logoHeight: number }
@@ -186,6 +193,8 @@ export default function Partners() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         minWidth: tier.key === 'gold' ? 160 : tier.key === 'org' ? undefined : 120,
+                        width: tier.key === 'org' ? undefined : '100%',
+                        maxWidth: tier.key === 'org' ? undefined : 220,
                         height: tier.key === 'org' || tier.key === 'gold' ? 72 : 68,
                         border: '2px solid transparent',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.05)',

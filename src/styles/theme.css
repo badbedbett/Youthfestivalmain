@@ -190,6 +190,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.12;
+  padding-bottom: 0.1em;
+  overflow: visible;
 }
 
 .gradient-text-full {
@@ -198,6 +201,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.12;
+  padding-bottom: 0.1em;
+  overflow: visible;
 }
 
 *:focus-visible {
@@ -217,4 +223,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.12;
+  padding-bottom: 0.1em;
+  overflow: visible;
 }

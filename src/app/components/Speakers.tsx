@@ -211,10 +211,11 @@ export default function Speakers() {
             </span>
           </div>
           <h2
+            className="section-display-title"
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(32px, 5vw, 68px)',
-              lineHeight: 0.92,
+              lineHeight: 1.05,
               color: '#FFDF00',
               margin: '0 0 12px',
               letterSpacing: '-0.02em',

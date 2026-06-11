@@ -14,6 +14,7 @@ import Speakers from './components/Speakers'
 import Partners from './components/Partners'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import ProgramImagesPreloader from './components/ProgramImagesPreloader'
 
 // MARKER-MAKE-KIT-INVOKED
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
         fontFamily: '"Inter", sans-serif',
       }}
     >
+      <ProgramImagesPreloader />
       <Navbar />
       <Hero />
       <About />
