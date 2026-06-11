@@ -189,7 +189,7 @@ html {
   color: #ffffff;
 }
 
-.hero-ogos-grid {
+.hero-ogos-mobile {
   display: none;
 }
 
@@ -200,22 +200,6 @@ html {
   min-height: clamp(96px, 11vw, 128px);
   display: block;
   margin: 0 auto;
-}
-
-.hero-partner-logo-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-partner-logo-svg {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  display: block;
 }
 
 .section-display-title,
@@ -364,19 +348,17 @@ html {
     display: none !important;
   }
 
-  .hero-ogos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, clamp(46px, 13vw, 60px));
-    column-gap: clamp(10px, 3vw, 18px);
-    row-gap: clamp(20px, 5.5vw, 30px);
+  .hero-ogos-mobile {
+    display: block;
     width: 100%;
     padding-top: clamp(20px, 5.5vw, 30px);
     border-top: 1px solid rgba(255, 255, 255, 0.35);
   }
 
-  .hero-partner-logo-cell {
-    padding: clamp(4px, 1.2vw, 8px) clamp(3px, 1vw, 8px);
+  .hero-ogos-mobile-svg {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .program-section-location {
