@@ -336,8 +336,10 @@ html {
   }
 
   .hero-main {
-    padding-top: clamp(32px, 5vh, 56px) !important;
-    gap: clamp(20px, 3vh, 32px) !important;
+    justify-content: flex-end !important;
+    padding-top: clamp(16px, 3vh, 28px) !important;
+    padding-bottom: clamp(24px, 4vh, 40px) !important;
+    gap: clamp(18px, 2.5vh, 28px) !important;
   }
 
   .hero-horse {
