@@ -9,9 +9,9 @@ export default function About() {
   return (
     <section
       id="about"
+      className="section-pad-lg"
       style={{
         background: '#FFFFFF',
-        padding: '120px 48px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -167,6 +167,7 @@ export default function About() {
           {stats.map((stat, i) => (
             <div
               key={i}
+              className="stat-card"
               style={{
                 background: '#F5F5F5',
                 border: `2px solid ${stat.color}20`,

@@ -170,9 +170,9 @@ export default function Speakers() {
   return (
     <section
       id="speakers"
+      className="section-pad"
       style={{
         background: 'linear-gradient(105deg, #BF00FF 0%, #E8362D 28%, #F18500 62%, #FFDF00 100%)',
-        padding: '100px 48px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -381,7 +381,7 @@ export default function Speakers() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 10;
+          gap: 10px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           overflow: hidden;

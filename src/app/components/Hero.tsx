@@ -12,6 +12,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      className="hero-section"
       style={{
         height: '100vh',
         minHeight: 620,
@@ -24,6 +25,7 @@ export default function Hero() {
     >
       {/* Horse — right side background */}
       <div
+        className="hero-horse"
         style={{
           position: 'absolute',
           right: '-4%',
@@ -44,6 +46,7 @@ export default function Hero() {
 
       {/* Top bar: logo */}
       <div
+        className="hero-logo-wrap"
         style={{
           position: 'relative',
           zIndex: 3,
@@ -67,6 +70,7 @@ export default function Hero() {
 
       {/* Center content */}
       <div
+        className="hero-content"
         style={{
           position: 'relative',
           zIndex: 3,
@@ -149,6 +153,7 @@ export default function Hero() {
 
       {/* Bottom: divider + partner logos */}
       <div
+        className="hero-bottom"
         style={{
           position: 'relative',
           zIndex: 3,

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const faqs = [
+const faqs: { q: string; a: string; multiline?: boolean }[] = [
   {
     q: 'Как добраться до экстрим-парка «УРАМ»?',
     a: 'Адрес: г. Казань, ул. Кремлёвская набережная, зд. 33 \nОстановки: \n• «Мост Миллениум»: автобусы №28, 43, 54 \n• «ЦПКиО им Горького»: троллейбусы №3, 5, 7 и автобусы №10, 35а, 63, 70, 91 \n• «Улица Толстого»: автобусы №22, 89, 28а \n \nМетро: Кремлёвская, Суконная Слобода, Площадь Тукая',
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Как стать волонтёром праздника?',
-    a: 'Заполните анкету на сайте:https://dobro.ru/event/11751333. Принимаются заявки от граждан РФ от 16 лет. Волонтёры получат фирменный мерч, питание и благодарственное письмо.',
+    a: 'Заполните анкету на сайте: https://dobro.ru/event/11751333. Принимаются заявки от граждан РФ от 16 лет. Волонтёры получат фирменный мерч, питание и благодарственное письмо.',
   },
   {
     q: 'Как принять участие в соревнованиях?',
@@ -34,9 +34,9 @@ export default function FAQ() {
   return (
     <section
       id="faq"
+      className="section-pad"
       style={{
         background: '#FFFFFF',
-        padding: '100px 48px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -139,8 +139,8 @@ export default function FAQ() {
                   </span>
                   <div
                     style={{
-                      width: 34,
-                      height: 34,
+                      width: 36,
+                      height: 36,
                       borderRadius: '50%',
                       border: `2px solid ${isOpen ? '#F18500' : 'rgba(241,133,0,0.3)'}`,
                       background: isOpen ? '#F18500' : 'transparent',
@@ -159,15 +159,16 @@ export default function FAQ() {
                 </button>
 
                 <div
+                  className="faq-answer-wrap"
                   style={{
-                    maxHeight: isOpen ? '400px' : '0',
+                    maxHeight: isOpen ? '1200px' : '0',
                     overflow: 'hidden',
                     transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   <div style={{ padding: '0 24px 22px' }}>
                     <div style={{ height: 1, background: 'rgba(241,133,0,0.15)', marginBottom: 14 }} />
-                    <p style={{ fontFamily: '"Inter", sans-serif', fontSize: 15, color: '#333333', lineHeight: 1.75, margin: 0, whiteSpace: (faq as any).multiline ? 'pre-wrap' : 'normal' }}>
+                    <p style={{ fontFamily: '"Inter", sans-serif', fontSize: 15, color: '#333333', lineHeight: 1.75, margin: 0, whiteSpace: faq.multiline ? 'pre-wrap' : 'normal' }}>
                       {faq.a}
                     </p>
                   </div>
@@ -182,7 +183,7 @@ export default function FAQ() {
           Не нашли ответ? Напишите нам в социальные сети фестиваля День молодёжи в РТ:
           <br />
           <a href="https://t.me/dmtatarstan" style={{ color: '#E8362D', fontWeight: 600, textDecoration: 'none' }}>
-            Telegram: t.me/dmtatarstan{' '}
+            Telegram: t.me/dmtatarstan
           </a>
           <br />
           <a href="https://vk.com/molodtatarstan" style={{ color: '#E8362D', fontWeight: 600, textDecoration: 'none' }}>

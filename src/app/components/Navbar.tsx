@@ -41,6 +41,7 @@ export default function Navbar() {
       }}
     >
       <div
+        className="nav-inner"
         style={{
           maxWidth: 1280,
           margin: '0 auto',
@@ -161,6 +162,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div
+          className="nav-mobile-menu"
           style={{
             background: 'rgba(255,255,255,0.98)',
             backdropFilter: 'blur(16px)',

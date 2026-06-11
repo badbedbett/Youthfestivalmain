@@ -27,7 +27,8 @@ export default function Footer() {
 
       {/* Main content */}
       <div
-        style={{ padding: '80px 48px 60px', position: 'relative', zIndex: 3 }}
+        className="section-pad"
+        style={{ position: 'relative', zIndex: 3 }}
       >
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           {/* Giant headline */}
@@ -178,7 +179,7 @@ export default function Footer() {
                 {['ВКонтакте', 'Telegram'].map(s => (
                   <a
                     key={s}
-                    href="#"
+                    href={s === 'Telegram' ? 'https://t.me/dmtatarstan' : 'https://vk.com/molodtatarstan'}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',

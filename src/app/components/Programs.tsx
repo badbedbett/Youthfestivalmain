@@ -1,12 +1,19 @@
 import { useState } from 'react'
-import imgSport from '../../imports/Programs-3/9094ae3209686501b4233b8d4f3745a7de5a16cd.png'
-import imgPatriot from '../../imports/Programs-3/9397c02078566ffa751dfc29d4982bec700ad1e0.png'
-import imgKariera from '../../imports/Programs-3/e10e0cf1d120e35a8ec723414c9199f84d7c090d.png'
-import imgHealth from '../../imports/Programs-3/188008d5b35365ce93ead45f93d8c3c7e802b9e7.png'
-import imgEdu from '../../imports/Programs-3/9d929ecfd33c4e2f7854dc8703eb6fcc3a1a055f.png'
-import imgStage from '../../imports/Programs-3/fdbbcf20b2121c510dcf2afc7a1d6b28b3635961.png'
-import imgInteractive from '../../imports/Programs-3/ce185d5db449e5eceef820bdcc231de7bd868c5b.png'
-import imgPartners from '../../imports/Programs-3/0aa4f49f034a014e6205f276c766f998f7d3feab.png'
+
+function programCardImg(name: string): string {
+  return `/images/programs/${name}.png`
+}
+
+const programSectionIds: Record<number, string> = {
+  1: 'sport-program',
+  2: 'patriot-program',
+  3: 'career-program',
+  4: 'health-program',
+  5: 'education-program',
+  6: 'stage-program',
+  7: 'interactive-program',
+  8: 'partners-program',
+}
 
 const programs = [
   {
@@ -15,7 +22,7 @@ const programs = [
     time: '10:00 – 19:00',
     desc: 'ВМХ, самокат, воркаут, паркур, ролики, баскетбол 3×3, джиу-джитсу и другие дисциплины.',
     color: '#E8362D',
-    img: imgSport,
+    img: programCardImg('sport'),
   },
   {
     id: 2,
@@ -23,7 +30,7 @@ const programs = [
     time: '10:00 – 19:00',
     desc: 'Полоса препятствий, трасса полётов для FPV, зона тактической стрельбы.',
     color: '#F18500',
-    img: imgPatriot,
+    img: programCardImg('patriot'),
   },
   {
     id: 3,
@@ -31,7 +38,7 @@ const programs = [
     time: '10:00 – 19:00',
     desc: 'Ярмарка трудоустройства, зоны собеседований, индустриальный показ моды, карьерные консультации.',
     color: '#FFDF00',
-    img: imgKariera,
+    img: programCardImg('career'),
   },
   {
     id: 4,
@@ -39,7 +46,7 @@ const programs = [
     time: '12:00 – 19:00',
     desc: 'Комплексная проверка здоровья, экспресс-тестирование на ВИЧ, короткие свидания с врачами.',
     color: '#BF00FF',
-    img: imgHealth,
+    img: programCardImg('health'),
   },
   {
     id: 5,
@@ -47,7 +54,7 @@ const programs = [
     time: '13:00 – 19:00',
     desc: 'Образовательные и просветительские лекции, мотивационные встречи.',
     color: '#BF00FF',
-    img: imgEdu,
+    img: programCardImg('education'),
   },
   {
     id: 6,
@@ -55,7 +62,7 @@ const programs = [
     time: '13:00 – 22:00',
     desc: 'Выступление местных артистов, показательные шоу и главные хэдлайнеры события.',
     color: '#E8362D',
-    img: imgStage,
+    img: programCardImg('stage'),
   },
   {
     id: 7,
@@ -63,7 +70,7 @@ const programs = [
     time: '12:00 – 22:00',
     desc: 'VR-зоны, квесты, творческие мастерские, арт-объекты.',
     color: '#F18500',
-    img: imgInteractive,
+    img: programCardImg('interactive'),
   },
   {
     id: 8,
@@ -71,7 +78,7 @@ const programs = [
     time: '10:00 – 22:00',
     desc: 'Пространства от ведущих партнёров: активности, розыгрыши, эксклюзив.',
     color: '#FFDF00',
-    img: imgPartners,
+    img: programCardImg('partners'),
   },
 ]
 
@@ -81,9 +88,9 @@ export default function Programs() {
   return (
     <section
       id="programs"
+      className="section-pad-lg"
       style={{
         background: '#F5F5F5',
-        padding: '120px 48px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -150,6 +157,7 @@ export default function Programs() {
           {programs.map(p => (
             <div
               key={p.id}
+              className="program-card"
               onMouseEnter={() => setHoveredId(p.id)}
               onMouseLeave={() => setHoveredId(null)}
               style={{
@@ -164,10 +172,23 @@ export default function Programs() {
               }}
             >
               <div style={{ position: 'relative', height: 160, overflow: 'hidden' }}>
+                <div
+                  aria-hidden
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: `linear-gradient(135deg, ${p.color}88 0%, ${p.color}22 55%, #f5f5f5 100%)`,
+                  }}
+                />
                 <img
                   src={p.img}
                   alt={p.title}
+                  onError={e => {
+                    e.currentTarget.style.display = 'none'
+                  }}
                   style={{
+                    position: 'absolute',
+                    inset: 0,
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
@@ -209,7 +230,7 @@ export default function Programs() {
                 </div>
               </div>
 
-              <div style={{ padding: '18px 20px 24px' }}>
+              <div className="program-card-body" style={{ padding: '18px 20px 24px' }}>
                 <h3
                   style={{
                     fontFamily: '"Dela Gothic One", cursive',
@@ -222,6 +243,7 @@ export default function Programs() {
                   {p.title}
                 </h3>
                 <p
+                  className="program-card-desc"
                   style={{
                     fontFamily: '"Inter", sans-serif',
                     fontSize: 13,
@@ -234,7 +256,7 @@ export default function Programs() {
                 </p>
                 <button
                   onClick={() => {
-                    const el = document.querySelector('#sport-program')
+                    const el = document.querySelector(`#${programSectionIds[p.id]}`)
                     if (el) el.scrollIntoView({ behavior: 'smooth' })
                   }}
                   style={{
@@ -250,6 +272,8 @@ export default function Programs() {
                     cursor: 'pointer',
                     textTransform: 'uppercase',
                     transition: 'opacity 0.15s',
+                    marginTop: 'auto',
+                    alignSelf: 'flex-start',
                   }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
                   onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = '1')}
@@ -268,6 +292,9 @@ export default function Programs() {
         }
         @media (max-width: 560px) {
           .programs-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (hover: none) {
+          .program-card { transform: none !important; }
         }
       `}</style>
     </section>

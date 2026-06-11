@@ -1,0 +1,196 @@
+/* Shared section spacing */
+html {
+  overflow-x: hidden;
+}
+
+.section-pad {
+  padding: clamp(56px, 8vw, 100px) clamp(20px, 4vw, 48px) !important;
+}
+
+.section-pad-lg {
+  padding: clamp(64px, 10vw, 120px) clamp(20px, 4vw, 48px) !important;
+}
+
+/* Program section header */
+@media (max-width: 768px) {
+  .sport-header {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .sport-header > div:last-child {
+    text-align: left !important;
+  }
+}
+
+/* Program accordion */
+.accordion-btn {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.accordion-time {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .accordion-btn {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 12px;
+    padding: 16px 18px !important;
+    align-items: start;
+  }
+
+  .accordion-title-col {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .accordion-time {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 13px !important;
+    white-space: normal;
+  }
+
+  .accordion-toggle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .accordion-inner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .accordion-image {
+    display: block !important;
+    width: 100%;
+    height: clamp(160px, 42vw, 220px) !important;
+    margin-top: 4px;
+  }
+
+  .accordion-body {
+    padding: 0 18px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .accordion-btn {
+    padding: 14px 14px !important;
+  }
+
+  .accordion-body {
+    padding: 0 14px 18px !important;
+  }
+}
+
+/* Program cards — equal height */
+.programs-grid {
+  align-items: stretch;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.program-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card-desc {
+  flex: 1;
+}
+
+/* Hero */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 100svh !important;
+  }
+
+  .hero-logo-wrap {
+    padding-top: clamp(88px, 14vw, 116px) !important;
+    padding-left: clamp(20px, 4vw, 48px) !important;
+    padding-right: clamp(20px, 4vw, 48px) !important;
+  }
+
+  .hero-content {
+    padding-left: clamp(20px, 4vw, 48px) !important;
+    padding-right: clamp(20px, 4vw, 48px) !important;
+  }
+
+  .hero-horse {
+    width: 85% !important;
+    right: -20% !important;
+    opacity: 0.35;
+  }
+
+  .hero-bottom {
+    padding-left: clamp(20px, 4vw, 48px) !important;
+    padding-right: clamp(20px, 4vw, 48px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-horse {
+    display: none;
+  }
+}
+
+/* Navbar */
+@media (max-width: 768px) {
+  .nav-inner {
+    padding-left: clamp(16px, 4vw, 48px) !important;
+    padding-right: clamp(16px, 4vw, 48px) !important;
+    height: 64px !important;
+  }
+
+  .nav-mobile-menu {
+    padding-left: clamp(16px, 4vw, 48px) !important;
+    padding-right: clamp(16px, 4vw, 48px) !important;
+  }
+}
+
+/* Partners logo grid */
+@media (max-width: 900px) {
+  .partners-org-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .partners-org-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Stats cards equal height */
+.stats-grid {
+  align-items: stretch;
+}
+
+.stat-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* FAQ long answers */
+.faq-answer-wrap {
+  max-height: 1200px;
+}
+
+@media (max-width: 768px) {
+  .faq-answer-wrap {
+    max-height: 1600px;
+  }
+}

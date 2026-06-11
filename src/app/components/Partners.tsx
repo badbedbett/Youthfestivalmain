@@ -75,9 +75,9 @@ export default function Partners() {
   return (
     <section
       id="partners"
+      className="section-pad"
       style={{
         background: '#F5F5F5',
-        padding: '80px 48px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -171,6 +171,7 @@ export default function Partners() {
                     ? { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }
                     : { display: 'flex', flexWrap: 'wrap', gap: 10 }
                 }
+                className={tier.key === 'org' ? 'partners-org-grid' : undefined}
               >
                 {tier.partners.map(p => {
                   const lp = p as { name: string; logo: string; logoHeight: number }
