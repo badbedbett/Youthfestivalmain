@@ -73,6 +73,10 @@ export default function Footer() {
                   borderRadius: 8,
                   transition: 'transform 0.15s, box-shadow 0.2s',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
                 }}
                 onMouseEnter={e => {
                   const t = e.currentTarget as HTMLElement

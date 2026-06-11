@@ -8,7 +8,6 @@ export default function HeroDateBlock({ className }: { className?: string }) {
         style={{
           width: 'clamp(200px, 28vw, 320px)',
           height: 'auto',
-          display: 'block',
         }}
       />
       <div className={`${className ?? ''} hero-date-mobile`.trim()}>

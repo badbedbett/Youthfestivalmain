@@ -1,7 +1,7 @@
 import { HorseBackground } from './HorseBackground'
 import LogoSvg from './LogoSvg'
 import HeroDateBlock from './HeroDateBlock'
-import OgosLogosSvg from './OgosLogosSvg'
+import HeroPartnerLogos from './HeroPartnerLogos'
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -117,14 +117,7 @@ export default function Hero() {
 
         {/* Partner logos + divider — bottom strip */}
         <div className="hero-bottom">
-          <div className="hero-ogos-wrap">
-            <OgosLogosSvg className="hero-ogos hero-ogos--full" />
-            <div className="hero-ogos-mobile" aria-hidden="false">
-              <OgosLogosSvg variant="mobile-3" className="hero-ogos-row hero-ogos-row--3" />
-              <OgosLogosSvg variant="mobile-3b" className="hero-ogos-row hero-ogos-row--3" />
-              <OgosLogosSvg variant="mobile-4" className="hero-ogos-row hero-ogos-row--4" />
-            </div>
-          </div>
+          <HeroPartnerLogos />
         </div>
       </div>
     </section>

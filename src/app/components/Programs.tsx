@@ -203,7 +203,7 @@ export default function Programs() {
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'linear-gradient(to bottom, transparent 30%, rgba(255,255,255,0.92) 100%)',
+                    background: 'linear-gradient(to bottom, rgba(60,60,60,0.12) 0%, rgba(45,45,45,0.5) 100%)',
                   }}
                 />
                 <div
