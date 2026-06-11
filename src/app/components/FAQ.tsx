@@ -82,10 +82,10 @@ export default function FAQ() {
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(40px, 5vw, 72px)',
-              lineHeight: 1.05,
+              lineHeight: 1.12,
               color: '#000000',
               margin: 0,
-              letterSpacing: '-0.02em',
+              letterSpacing: 0,
             }}
           >
             ЧАСТО

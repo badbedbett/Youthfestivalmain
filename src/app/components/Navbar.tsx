@@ -4,7 +4,6 @@ import LogoSvg from './LogoSvg'
 const links = [
   { label: 'О событии', href: '#about' },
   { label: 'Программа', href: '#programs' },
-  { label: 'Спикеры', href: '#speakers' },
   { label: 'FAQ', href: '#faq' },
 ]
 

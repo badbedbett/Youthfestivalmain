@@ -14,13 +14,10 @@ export default function Hero() {
       id="hero"
       className="hero-section"
       style={{
-        height: '100vh',
-        minHeight: 620,
+        minHeight: 'max(100vh, 620px)',
         background: 'linear-gradient(110.643deg, #BF00FF 7.735%, #E8362D 31.403%, #F18500 60.144%, #FFDF00 92.265%)',
         position: 'relative',
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
       }}
     >
       {/* Horse — right side background */}
@@ -44,129 +41,92 @@ export default function Hero() {
         />
       </div>
 
-      {/* Top bar: logo */}
-      <div
-        className="hero-logo-wrap"
-        style={{
-          position: 'relative',
-          zIndex: 3,
-          maxWidth: 1280,
-          width: '100%',
-          margin: '0 auto',
-          padding: '100px 48px 0',
-          boxSizing: 'border-box',
-          flexShrink: 0,
-        }}
-      >
-        <LogoSvg
-          variant="light"
-          style={{
-            height: 'clamp(130px, 17vw, 240px)',
-            width: 'auto',
-            display: 'block',
-          }}
-        />
-      </div>
-
-      {/* Center content */}
-      <div
-        className="hero-content"
-        style={{
-          position: 'relative',
-          zIndex: 3,
-          maxWidth: 1280,
-          width: '100%',
-          margin: '0 auto',
-          padding: '0 48px',
-          boxSizing: 'border-box',
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          paddingBottom: 'clamp(80px, 10vh, 120px)',
-        }}
-      >
-        {/* Date + venue block */}
-        <DateBlockSvg
-          style={{
-            width: 'clamp(160px, 22vw, 320px)',
-            height: 'auto',
-            display: 'block',
-            marginBottom: 'clamp(20px, 3vh, 36px)',
-          }}
-        />
-
-        {/* CTA buttons */}
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <button
-            onClick={() => scrollTo('#about')}
+      <div className="hero-inner">
+        {/* Logo — top, pt 116px in hero.svg */}
+        <div className="hero-logo-wrap">
+          <LogoSvg
+            variant="light"
+            className="hero-logo"
             style={{
-              background: '#FFDF00',
-              border: 'none',
-              cursor: 'pointer',
-              fontFamily: '"Dela Gothic One", cursive',
-              fontSize: 14,
-              color: '#000000',
-              letterSpacing: '0.04em',
-              padding: '14px 32px',
-              borderRadius: 8,
-              transition: 'transform 0.15s, box-shadow 0.2s',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-              whiteSpace: 'nowrap',
+              height: 'clamp(145px, 16.8vw, 195px)',
+              width: 'auto',
+              display: 'block',
             }}
-            onMouseEnter={e => {
-              const t = e.currentTarget
-              t.style.transform = 'translateY(-2px)'
-              t.style.boxShadow = '0 8px 28px rgba(0,0,0,0.25)'
-            }}
-            onMouseLeave={e => {
-              const t = e.currentTarget
-              t.style.transform = 'translateY(0)'
-              t.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
-            }}
-          >
-            ЗАРЕГИСТРИРОВАТЬСЯ →
-          </button>
-          <button
-            onClick={() => scrollTo('#programs')}
-            style={{
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(8px)',
-              border: '1.6px solid rgba(255,255,255,0.55)',
-              cursor: 'pointer',
-              fontFamily: '"Dela Gothic One", cursive',
-              fontSize: 14,
-              color: '#FFFFFF',
-              letterSpacing: '0.04em',
-              padding: '12px 28px',
-              borderRadius: 8,
-              transition: 'background 0.2s',
-              whiteSpace: 'nowrap',
-            }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.25)')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')}
-          >
-            ПРОГРАММА
-          </button>
+          />
         </div>
-      </div>
 
-      {/* Bottom: divider + partner logos */}
-      <div
-        className="hero-bottom"
-        style={{
-          position: 'relative',
-          zIndex: 3,
-          maxWidth: 1280,
-          width: '100%',
-          margin: '0 auto',
-          padding: '0 48px 24px',
-          boxSizing: 'border-box',
-          flexShrink: 0,
-        }}
-      >
-        <div className="hero-ogos-wrap">
-          <OgosLogosSvg className="hero-ogos" />
+        {/* Date + CTA — stacked under logo, not vertically centered */}
+        <div className="hero-main">
+          <DateBlockSvg
+            className="hero-date"
+            style={{
+              width: 'clamp(200px, 28vw, 320px)',
+              height: 'auto',
+              display: 'block',
+            }}
+          />
+
+          <div className="hero-cta">
+            <button
+              onClick={() => scrollTo('#about')}
+              className="hero-btn hero-btn-primary"
+              style={{
+                background: '#FFDF00',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: '"Dela Gothic One", cursive',
+                fontSize: 14,
+                color: '#000000',
+                letterSpacing: '0.04em',
+                padding: '14px 32px',
+                borderRadius: 8,
+                transition: 'transform 0.15s, box-shadow 0.2s',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => {
+                const t = e.currentTarget
+                t.style.transform = 'translateY(-2px)'
+                t.style.boxShadow = '0 8px 28px rgba(0,0,0,0.25)'
+              }}
+              onMouseLeave={e => {
+                const t = e.currentTarget
+                t.style.transform = 'translateY(0)'
+                t.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'
+              }}
+            >
+              ЗАРЕГИСТРИРОВАТЬСЯ →
+            </button>
+            <button
+              onClick={() => scrollTo('#programs')}
+              className="hero-btn hero-btn-secondary"
+              style={{
+                background: 'rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(8px)',
+                border: '1.6px solid rgba(255,255,255,0.55)',
+                cursor: 'pointer',
+                fontFamily: '"Dela Gothic One", cursive',
+                fontSize: 14,
+                color: '#FFFFFF',
+                letterSpacing: '0.04em',
+                padding: '12px 28px',
+                borderRadius: 8,
+                transition: 'background 0.2s',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.25)')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')}
+            >
+              ПРОГРАММА
+            </button>
+          </div>
+        </div>
+
+        {/* Partner logos + divider — bottom strip */}
+        <div className="hero-bottom">
+          <div className="hero-ogos-wrap">
+            <OgosLogosSvg className="hero-ogos" />
+          </div>
         </div>
       </div>
     </section>

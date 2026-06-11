@@ -10,7 +10,6 @@ import EducationProgram from './components/EducationProgram'
 import StageProgram from './components/StageProgram'
 import InteractiveProgram from './components/InteractiveProgram'
 import PartnerPlatformsProgram from './components/PartnerPlatformsProgram'
-import Speakers from './components/Speakers'
 import Partners from './components/Partners'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -40,7 +39,6 @@ export default function App() {
       <StageProgram />
       <InteractiveProgram />
       <PartnerPlatformsProgram />
-      <Speakers />
       <Partners />
       <FAQ />
       <Footer />
