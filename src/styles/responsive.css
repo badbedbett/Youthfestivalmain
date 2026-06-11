@@ -154,6 +154,10 @@ html {
   overflow: visible;
 }
 
+.hero-ogos-mobile {
+  display: none;
+}
+
 .hero-ogos {
   width: 100%;
   height: auto;
@@ -167,6 +171,75 @@ html {
 .section-display-title .gradient-text-full,
 .section-display-title .gradient-text-faq {
   overflow: visible;
+}
+
+/* Mobile typography & overflow fixes */
+@media (max-width: 768px) {
+  .section-display-title {
+    font-size: clamp(28px, 8.5vw, 44px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0 !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .gradient-text-warm,
+  .gradient-text-full,
+  .gradient-text-faq {
+    display: inline;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.04em 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .sport-header > div:last-child > div:first-child {
+    font-size: clamp(18px, 5vw, 28px) !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .accordion-btn {
+    min-width: 0;
+  }
+
+  .accordion-title-col {
+    min-width: 0;
+  }
+
+  .accordion-title-text,
+  .accordion-place-text,
+  .accordion-desc-text,
+  .accordion-time {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .accordion-partner-badge {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .faq-question-text,
+  .faq-answer-text {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .faq-question-btn {
+    min-width: 0;
+  }
+
+  .program-card-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 }
 
 @media (max-width: 768px) {
@@ -193,8 +266,22 @@ html {
     padding-bottom: clamp(16px, 3vw, 28px) !important;
   }
 
-  .hero-ogos {
-    min-height: clamp(88px, 22vw, 112px);
+  .hero-ogos--full {
+    display: none !important;
+  }
+
+  .hero-ogos-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 4vw, 22px);
+    width: 100%;
+  }
+
+  .hero-ogos-row {
+    width: 100%;
+    height: clamp(56px, 16vw, 80px);
+    min-height: unset;
+    display: block;
   }
 }
 

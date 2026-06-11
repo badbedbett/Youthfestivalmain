@@ -125,7 +125,11 @@ export default function Hero() {
         {/* Partner logos + divider — bottom strip */}
         <div className="hero-bottom">
           <div className="hero-ogos-wrap">
-            <OgosLogosSvg className="hero-ogos" />
+            <OgosLogosSvg className="hero-ogos hero-ogos--full" />
+            <div className="hero-ogos-mobile" aria-hidden="false">
+              <OgosLogosSvg variant="top" className="hero-ogos-row" />
+              <OgosLogosSvg variant="bottom" className="hero-ogos-row" />
+            </div>
           </div>
         </div>
       </div>

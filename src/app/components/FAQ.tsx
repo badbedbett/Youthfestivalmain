@@ -114,6 +114,7 @@ export default function FAQ() {
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
                   aria-expanded={isOpen}
+                  className="faq-question-btn"
                   style={{
                     width: '100%',
                     background: 'none',
@@ -125,15 +126,18 @@ export default function FAQ() {
                     alignItems: 'center',
                     gap: 16,
                     textAlign: 'left',
+                    minWidth: 0,
                   }}
                 >
                   <span
+                    className="faq-question-text"
                     style={{
                       fontFamily: '"Dela Gothic One", cursive',
                       fontSize: 'clamp(14px, 1.3vw, 16px)',
                       color: '#000000',
                       letterSpacing: '-0.01em',
                       lineHeight: 1.35,
+                      minWidth: 0,
                     }}
                   >
                     {faq.q}
@@ -169,7 +173,7 @@ export default function FAQ() {
                 >
                   <div style={{ padding: '0 24px 22px' }}>
                     <div style={{ height: 1, background: 'rgba(241,133,0,0.15)', marginBottom: 14 }} />
-                    <p style={{ fontFamily: '"Inter", sans-serif', fontSize: 15, color: '#333333', lineHeight: 1.75, margin: 0, whiteSpace: faq.multiline ? 'pre-wrap' : 'normal' }}>
+                    <p className="faq-answer-text" style={{ fontFamily: '"Inter", sans-serif', fontSize: 15, color: '#333333', lineHeight: 1.75, margin: 0, whiteSpace: faq.multiline ? 'pre-wrap' : 'normal' }}>
                       {faq.a}
                     </p>
                   </div>

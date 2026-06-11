@@ -178,8 +178,9 @@ export default function ProgramSection({
                   }}
                   className="accordion-btn"
                 >
-                  <div className="accordion-title-col" style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <div className="accordion-title-col" style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
                     <span
+                      className="accordion-title-text"
                       style={{
                         fontFamily: '"Dela Gothic One", cursive',
                         fontSize: 'clamp(14px, 1.4vw, 17px)',
@@ -190,7 +191,7 @@ export default function ProgramSection({
                     >
                       {act.title}
                     </span>
-                    <span style={{ fontFamily: '"Inter", sans-serif', fontSize: 13, color: '#666666' }}>
+                    <span className="accordion-place-text" style={{ fontFamily: '"Inter", sans-serif', fontSize: 13, color: '#666666' }}>
                       {act.place}
                     </span>
                   </div>
@@ -251,6 +252,7 @@ export default function ProgramSection({
                       <div>
                         {hasDesc && (
                           <p
+                            className="accordion-desc-text"
                             style={{
                               fontFamily: '"Inter", sans-serif',
                               fontSize: 15,
@@ -310,6 +312,7 @@ export default function ProgramSection({
                             {act.partners.map((p, i) => (
                               <div
                                 key={i}
+                                className="accordion-partner-badge"
                                 style={{
                                   background: '#FFFFFF',
                                   border: '2px solid #F18500',

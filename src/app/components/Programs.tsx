@@ -235,6 +235,7 @@ export default function Programs() {
 
               <div className="program-card-body" style={{ padding: '18px 20px 24px' }}>
                 <h3
+                  className="program-card-title"
                   style={{
                     fontFamily: '"Dela Gothic One", cursive',
                     fontSize: 17,

@@ -3,13 +3,22 @@ import React from 'react'
 export default function OgosLogosSvg({
   style,
   className,
+  variant = 'full',
 }: {
   style?: React.CSSProperties
   className?: string
+  variant?: 'full' | 'top' | 'bottom'
 }) {
+  const viewBox =
+    variant === 'top'
+      ? '0 0 1734 70'
+      : variant === 'bottom'
+        ? '0 70 1734 70'
+        : '0 0 1734 140'
+
   return (
     <svg
-      viewBox="0 0 1734 140"
+      viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
