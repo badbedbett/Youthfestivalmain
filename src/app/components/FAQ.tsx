@@ -90,9 +90,7 @@ export default function FAQ() {
             }}
           >
             ЧАСТО
-            <br />
             <span className="gradient-text-faq">ЗАДАВАЕМЫЕ</span>
-            <br />
             ВОПРОСЫ
           </h2>
         </div>

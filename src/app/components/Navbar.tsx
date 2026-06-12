@@ -1,15 +1,34 @@
 import { useState, useEffect } from 'react'
 import LogoSvg from './LogoSvg'
 
-const links = [
+type NavLink = {
+  label: string
+  href: string
+  children?: { label: string; href: string }[]
+}
+
+const programSections: { label: string; href: string }[] = [
+  { label: 'Спорт', href: '#sport-program' },
+  { label: 'Патриотика', href: '#patriot-program' },
+  { label: 'Карьера', href: '#career-program' },
+  { label: 'Здоровье', href: '#health-program' },
+  { label: 'Образование', href: '#education-program' },
+  { label: 'Главная сцена', href: '#stage-program' },
+  { label: 'Интерактивные площадки', href: '#interactive-program' },
+  { label: 'Партнёрские площадки', href: '#partners-program' },
+]
+
+const links: NavLink[] = [
   { label: 'О событии', href: '#about' },
-  { label: 'Программа', href: '#programs' },
+  { label: 'Программа', href: '#programs', children: programSections },
   { label: 'Вопросы', href: '#faq' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -19,6 +38,8 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false)
+    setMobileExpanded(null)
+    setOpenDropdown(null)
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
@@ -73,34 +94,121 @@ export default function Navbar() {
           style={{ display: 'flex', gap: 36, alignItems: 'center' }}
           className="hidden-mobile"
         >
-          {links.map(link => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontFamily: '"Inter", sans-serif',
-                fontSize: 14,
-                fontWeight: 500,
-                color: scrolled ? 'rgba(26,10,0,0.7)' : 'rgba(255,255,255,0.85)',
-                letterSpacing: '0.02em',
-                transition: 'color 0.2s',
-                padding: 0,
-              }}
-              onMouseEnter={e => {
-                ;(e.target as HTMLElement).style.color = scrolled ? '#E8362D' : '#FFDF00'
-              }}
-              onMouseLeave={e => {
-                ;(e.target as HTMLElement).style.color = scrolled
-                  ? 'rgba(26,10,0,0.7)'
-                  : 'rgba(255,255,255,0.85)'
-              }}
-            >
-              {link.label}
-            </button>
-          ))}
+          {links.map(link => {
+            const isDropdownOpen = openDropdown === link.href
+
+            return (
+              <div
+                key={link.href}
+                style={{ position: 'relative' }}
+                onMouseEnter={() => link.children && setOpenDropdown(link.href)}
+                onMouseLeave={() => link.children && setOpenDropdown(null)}
+              >
+                <button
+                  onClick={() => handleNavClick(link.href)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: scrolled ? 'rgba(26,10,0,0.7)' : 'rgba(255,255,255,0.85)',
+                    letterSpacing: '0.02em',
+                    transition: 'color 0.2s',
+                    padding: 0,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 5,
+                  }}
+                  onMouseEnter={e => {
+                    ;(e.currentTarget as HTMLElement).style.color = scrolled ? '#E8362D' : '#FFDF00'
+                  }}
+                  onMouseLeave={e => {
+                    ;(e.currentTarget as HTMLElement).style.color = scrolled
+                      ? 'rgba(26,10,0,0.7)'
+                      : 'rgba(255,255,255,0.85)'
+                  }}
+                >
+                  {link.label}
+                  {link.children && (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        transition: 'transform 0.2s',
+                        transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        fontSize: 9,
+                        lineHeight: 1,
+                      }}
+                      aria-hidden
+                    >
+                      ▼
+                    </span>
+                  )}
+                </button>
+
+                {link.children && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      paddingTop: 14,
+                      opacity: isDropdownOpen ? 1 : 0,
+                      visibility: isDropdownOpen ? 'visible' : 'hidden',
+                      transition: 'opacity 0.2s',
+                      pointerEvents: isDropdownOpen ? 'auto' : 'none',
+                    }}
+                  >
+                    <div
+                      style={{
+                        background: '#FFFFFF',
+                        borderRadius: 12,
+                        boxShadow: '0 12px 32px rgba(0,0,0,0.14)',
+                        border: '1px solid rgba(232,54,45,0.1)',
+                        padding: 8,
+                        minWidth: 230,
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      {link.children.map(child => (
+                        <button
+                          key={child.href}
+                          onClick={() => handleNavClick(child.href)}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontFamily: '"Inter", sans-serif',
+                            fontSize: 14,
+                            fontWeight: 500,
+                            color: 'rgba(26,10,0,0.75)',
+                            textAlign: 'left',
+                            padding: '10px 14px',
+                            borderRadius: 8,
+                            transition: 'background 0.15s, color 0.15s',
+                            whiteSpace: 'nowrap',
+                          }}
+                          onMouseEnter={e => {
+                            ;(e.currentTarget as HTMLElement).style.background = 'rgba(232,54,45,0.08)'
+                            ;(e.currentTarget as HTMLElement).style.color = '#E8362D'
+                          }}
+                          onMouseLeave={e => {
+                            ;(e.currentTarget as HTMLElement).style.background = 'transparent'
+                            ;(e.currentTarget as HTMLElement).style.color = 'rgba(26,10,0,0.75)'
+                          }}
+                        >
+                          {child.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
           <button
             onClick={() => handleNavClick('#about')}
             style={{
@@ -167,30 +275,106 @@ export default function Navbar() {
             backdropFilter: 'blur(16px)',
             padding: '20px 48px',
             borderTop: '1px solid rgba(232,54,45,0.1)',
+            maxHeight: 'calc(100vh - 72px)',
+            overflowY: 'auto',
           }}
         >
-          {links.map(link => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              style={{
-                display: 'block',
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontFamily: '"Inter", sans-serif',
-                fontSize: 18,
-                fontWeight: 500,
-                color: '#000000',
-                textAlign: 'left',
-                padding: '12px 0',
-                borderBottom: '1px solid rgba(232,54,45,0.08)',
-              }}
-            >
-              {link.label}
-            </button>
-          ))}
+          {links.map(link => {
+            const isExpanded = mobileExpanded === link.href
+
+            if (!link.children) {
+              return (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: 18,
+                    fontWeight: 500,
+                    color: '#000000',
+                    textAlign: 'left',
+                    padding: '12px 0',
+                    borderBottom: '1px solid rgba(232,54,45,0.08)',
+                  }}
+                >
+                  {link.label}
+                </button>
+              )
+            }
+
+            return (
+              <div key={link.href} style={{ borderBottom: '1px solid rgba(232,54,45,0.08)' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    style={{
+                      flex: 1,
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontFamily: '"Inter", sans-serif',
+                      fontSize: 18,
+                      fontWeight: 500,
+                      color: '#000000',
+                      textAlign: 'left',
+                      padding: '12px 0',
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                  <button
+                    onClick={() => setMobileExpanded(isExpanded ? null : link.href)}
+                    aria-label={isExpanded ? 'Свернуть' : 'Развернуть'}
+                    aria-expanded={isExpanded}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '12px 4px 12px 16px',
+                      color: '#E8362D',
+                      fontSize: 12,
+                      lineHeight: 1,
+                      transition: 'transform 0.2s',
+                      transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}
+                  >
+                    ▼
+                  </button>
+                </div>
+
+                {isExpanded && (
+                  <div style={{ paddingBottom: 8 }}>
+                    {link.children.map(child => (
+                      <button
+                        key={child.href}
+                        onClick={() => handleNavClick(child.href)}
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontFamily: '"Inter", sans-serif',
+                          fontSize: 15,
+                          fontWeight: 500,
+                          color: 'rgba(26,10,0,0.7)',
+                          textAlign: 'left',
+                          padding: '10px 0 10px 16px',
+                        }}
+                      >
+                        {child.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
           <button
             onClick={() => handleNavClick('#about')}
             style={{
