@@ -2,6 +2,7 @@ import { HorseBackground } from './HorseBackground'
 import LogoSvg from './LogoSvg'
 import HeroDateBlock from './HeroDateBlock'
 import HeroPartnerLogos from './HeroPartnerLogos'
+import { REGISTRATION_URL } from '../constants/registration'
 
 export default function Hero() {
   const scrollTo = (id: string) => {
@@ -60,8 +61,10 @@ export default function Hero() {
           <HeroDateBlock className="hero-date" />
 
           <div className="hero-cta">
-            <button
-              onClick={() => scrollTo('#about')}
+            <a
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-btn hero-btn-primary"
               style={{
                 background: '#FFDF00',
@@ -76,6 +79,8 @@ export default function Hero() {
                 transition: 'transform 0.15s, box-shadow 0.2s',
                 boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
                 whiteSpace: 'nowrap',
+                textDecoration: 'none',
+                display: 'inline-block',
               }}
               onMouseEnter={e => {
                 const t = e.currentTarget
@@ -89,7 +94,7 @@ export default function Hero() {
               }}
             >
               ЗАРЕГИСТРИРОВАТЬСЯ →
-            </button>
+            </a>
             <button
               onClick={() => scrollTo('#programs')}
               className="hero-btn hero-btn-secondary"

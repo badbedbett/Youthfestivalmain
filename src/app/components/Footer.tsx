@@ -1,4 +1,5 @@
 import { HorseBackground } from './HorseBackground'
+import { REGISTRATION_URL } from '../constants/registration'
 
 export default function Footer() {
   return (
@@ -60,7 +61,10 @@ export default function Footer() {
               27 ИЮНЯ · КАЗАНЬ
             </div>
             <div style={{ marginTop: 32 }}>
-              <button
+              <a
+                href={REGISTRATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   background: '#FFDF00',
                   border: 'none',
@@ -77,6 +81,7 @@ export default function Footer() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 8,
+                  textDecoration: 'none',
                 }}
                 onMouseEnter={e => {
                   const t = e.currentTarget as HTMLElement
@@ -90,7 +95,7 @@ export default function Footer() {
                 }}
               >
                 ЗАРЕГИСТРИРОВАТЬСЯ →
-              </button>
+              </a>
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import LogoSvg from './LogoSvg'
+import { REGISTRATION_URL } from '../constants/registration'
 
 type NavLink = {
   label: string
@@ -209,8 +210,10 @@ export default function Navbar() {
               </div>
             )
           })}
-          <button
-            onClick={() => handleNavClick('#about')}
+          <a
+            href={REGISTRATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               background: '#E8362D',
               border: 'none',
@@ -222,12 +225,14 @@ export default function Navbar() {
               padding: '10px 22px',
               borderRadius: 6,
               transition: 'background 0.2s, transform 0.1s',
+              textDecoration: 'none',
+              display: 'inline-block',
             }}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#E8362D')}
             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#E8362D')}
           >
             РЕГИСТРАЦИЯ
-          </button>
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -375,8 +380,11 @@ export default function Navbar() {
               </div>
             )
           })}
-          <button
-            onClick={() => handleNavClick('#about')}
+          <a
+            href={REGISTRATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
             style={{
               marginTop: 20,
               background: '#E8362D',
@@ -389,10 +397,14 @@ export default function Navbar() {
               padding: '14px 32px',
               borderRadius: 6,
               width: '100%',
+              textDecoration: 'none',
+              display: 'block',
+              textAlign: 'center',
+              boxSizing: 'border-box',
             }}
           >
             ЗАРЕГИСТРИРОВАТЬСЯ
-          </button>
+          </a>
         </div>
       )}
 
