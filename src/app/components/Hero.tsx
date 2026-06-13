@@ -1,7 +1,6 @@
 import { HorseBackground } from './HorseBackground'
 import LogoSvg from './LogoSvg'
 import HeroDateBlock from './HeroDateBlock'
-import HeroPartnerLogos from './HeroPartnerLogos'
 import { REGISTRATION_URL } from '../constants/registration'
 
 export default function Hero() {
@@ -118,11 +117,6 @@ export default function Hero() {
               ПРОГРАММА
             </button>
           </div>
-        </div>
-
-        {/* Partner logos + divider — bottom strip */}
-        <div className="hero-bottom">
-          <HeroPartnerLogos />
         </div>
       </div>
     </section>
