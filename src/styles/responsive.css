@@ -313,10 +313,12 @@ html {
 @media (max-width: 768px) {
   .hero-section {
     min-height: 100svh !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .hero-logo-wrap {
-    padding-top: 27vh !important;
+    padding-top: clamp(88px, 14vw, 116px) !important;
   }
 
   .hero-main {
@@ -358,6 +360,7 @@ html {
     width: 100%;
     height: auto;
     display: block;
+    max-height: none;
   }
 
   .program-section-location {

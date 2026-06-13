@@ -14,7 +14,7 @@ const PROGRAM_CARD_NAMES = [
 const DETAIL_IMAGES: Array<[folder: string, name: string]> = [
   ['sport', 'yaratam'],
   ['sport', 'bmx'],
-  ['sport', 'samokat'],
+  ['sport', 'bmx-street'],
   ['sport', 'workout'],
   ['sport', 'parkour'],
   ['sport', 'dance'],
