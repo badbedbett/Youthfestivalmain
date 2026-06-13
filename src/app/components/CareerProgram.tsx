@@ -1,5 +1,6 @@
 import ProgramSection from './ProgramSection'
 import { programImg } from '../data/programImages'
+import careerPartnerLogo from '../../imports/career-partner-logo.png'
 
 const MINISTRY = 'Министерство труда, занятости и социальной защиты РТ'
 
@@ -177,6 +178,8 @@ export default function CareerProgram() {
       title="КАРЬЕРА"
       timeRange="10:00 – 20:00"
       activities={careerActivities}
+      headerLogo={careerPartnerLogo}
+      headerLogoAlt="Логотип партнёра"
     />
   )
 }

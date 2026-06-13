@@ -22,6 +22,8 @@ type ProgramSectionProps = {
   location?: ReactNode
   activities: ProgramActivity[]
   expandedMaxHeight?: number
+  headerLogo?: string
+  headerLogoAlt?: string
 }
 
 export default function ProgramSection({
@@ -32,6 +34,8 @@ export default function ProgramSection({
   location,
   activities,
   expandedMaxHeight = 2000,
+  headerLogo,
+  headerLogoAlt = '',
 }: ProgramSectionProps) {
   const [openId, setOpenId] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -126,36 +130,52 @@ export default function ProgramSection({
               <span className={titleClassName}>{title}</span>
             </h2>
           </div>
-          <div>
-            <div
-              style={{
-                fontFamily: '"Dela Gothic One", cursive',
-                fontSize: 'clamp(20px, 2.5vw, 36px)',
-                color: 'rgba(232,54,45,0.15)',
-                letterSpacing: '0.05em',
-              }}
-            >
-              {timeRange}
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
+            <div>
+              <div
+                style={{
+                  fontFamily: '"Dela Gothic One", cursive',
+                  fontSize: 'clamp(20px, 2.5vw, 36px)',
+                  color: 'rgba(232,54,45,0.15)',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                {timeRange}
+              </div>
+              <p
+                className="program-section-location"
+                style={{
+                  fontFamily: '"Inter", sans-serif',
+                  fontSize: 15,
+                  color: '#666666',
+                  lineHeight: 1.6,
+                  marginTop: 8,
+                  marginBottom: 0,
+                }}
+              >
+                {location ?? (
+                  <>
+                    Экстрим-парк «УРАМ»
+                    <br />
+                    Кремлёвская набережная, 33
+                  </>
+                )}
+              </p>
             </div>
-            <p
-              className="program-section-location"
-              style={{
-                fontFamily: '"Inter", sans-serif',
-                fontSize: 15,
-                color: '#666666',
-                lineHeight: 1.6,
-                marginTop: 8,
-                marginBottom: 0,
-              }}
-            >
-              {location ?? (
-                <>
-                  Экстрим-парк «УРАМ»
-                  <br />
-                  Кремлёвская набережная, 33
-                </>
-              )}
-            </p>
+            {headerLogo && (
+              <img
+                src={headerLogo}
+                alt={headerLogoAlt}
+                className="program-header-logo"
+                style={{
+                  height: 'clamp(48px, 6vw, 72px)',
+                  width: 'auto',
+                  flexShrink: 0,
+                  filter: 'brightness(0)',
+                  opacity: 0.25,
+                }}
+              />
+            )}
           </div>
         </div>
 
