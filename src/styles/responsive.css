@@ -154,39 +154,10 @@ html {
   overflow: visible;
 }
 
-.hero-date-desktop {
+.hero-date {
   display: block;
-}
-
-.hero-date-mobile {
-  display: none;
-}
-
-.hero-date-day {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(52px, 14vw, 72px);
-  line-height: 0.9;
-  color: #fefe8c;
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
-}
-
-.hero-date-venue {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(16px, 4.2vw, 22px);
-  line-height: 1.2;
-  color: #ffffff;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.hero-date-address {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-size: clamp(15px, 4vw, 20px);
-  line-height: 1.25;
-  color: #ffffff;
+  width: clamp(200px, 28vw, 320px);
+  height: auto;
 }
 
 .hero-ogos-mobile {
@@ -338,12 +309,8 @@ html {
     padding-bottom: clamp(16px, 3vw, 28px) !important;
   }
 
-  .hero-date-desktop {
-    display: none !important;
-  }
-
-  .hero-date-mobile {
-    display: block;
+  .hero-date {
+    width: clamp(180px, 52vw, 260px) !important;
   }
 
   .hero-ogos--desktop {
