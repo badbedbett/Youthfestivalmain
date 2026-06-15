@@ -118,14 +118,11 @@ html {
   width: 100%;
   margin: 0 auto;
   min-height: max(100vh, 620px);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 0 clamp(20px, 4vw, 48px);
   box-sizing: border-box;
-}
-
-.hero-logo-wrap {
-  padding-top: clamp(88px, 10vw, 116px);
 }
 
 .hero-main {
@@ -133,8 +130,14 @@ html {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-top: clamp(12px, 2vh, 28px);
-  gap: clamp(22px, 3vh, 36px);
+  padding-top: clamp(88px, 10vw, 116px);
+  gap: clamp(24px, 4vh, 44px);
+}
+
+.hero-logo-date {
+  display: block;
+  width: clamp(300px, 34vw, 400px);
+  height: auto;
 }
 
 .hero-cta {
@@ -152,41 +155,6 @@ html {
 .hero-ogos-wrap {
   width: 100%;
   overflow: visible;
-}
-
-.hero-date-block {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.hero-date-day {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(80px, 9.5vw, 104px);
-  line-height: 0.85;
-  color: #fefe8c;
-  letter-spacing: -0.02em;
-}
-
-.hero-date-venue {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-weight: 700;
-  font-size: clamp(22px, 2.4vw, 28px);
-  line-height: 1.17;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  margin-top: 4px;
-}
-
-.hero-date-address {
-  font-family: "ALS Granate", "Inter", sans-serif;
-  font-weight: 400;
-  font-size: clamp(20px, 2.1vw, 26px);
-  line-height: 1.17;
-  color: #ffffff;
-  letter-spacing: -0.02em;
 }
 
 .hero-ogos-mobile {
@@ -317,15 +285,15 @@ html {
     overflow: visible !important;
   }
 
-  .hero-logo-wrap {
-    padding-top: clamp(88px, 14vw, 116px) !important;
-  }
-
   .hero-main {
     justify-content: flex-start !important;
-    padding-top: clamp(8px, 1.5vh, 16px) !important;
+    padding-top: clamp(96px, 24vw, 132px) !important;
     padding-bottom: clamp(24px, 4vh, 40px) !important;
-    gap: clamp(18px, 2.5vh, 28px) !important;
+    gap: clamp(22px, 4vh, 36px) !important;
+  }
+
+  .hero-logo-date {
+    width: clamp(240px, 72vw, 340px) !important;
   }
 
   .hero-horse {
@@ -336,19 +304,6 @@ html {
 
   .hero-bottom {
     padding-bottom: clamp(16px, 3vw, 28px) !important;
-  }
-
-  .hero-date-day {
-    font-size: clamp(68px, 17vw, 88px) !important;
-  }
-
-  .hero-date-venue {
-    font-size: clamp(20px, 5vw, 26px) !important;
-    margin-top: 2px !important;
-  }
-
-  .hero-date-address {
-    font-size: clamp(18px, 4.6vw, 24px) !important;
   }
 
   .hero-ogos--desktop {

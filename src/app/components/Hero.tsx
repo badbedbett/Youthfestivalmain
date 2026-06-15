@@ -1,6 +1,5 @@
 import { HorseBackground } from './HorseBackground'
-import LogoSvg from './LogoSvg'
-import HeroDateBlock from './HeroDateBlock'
+import heroLogoDate from '../../imports/hero-logo-date.svg'
 import { REGISTRATION_URL } from '../constants/registration'
 
 export default function Hero() {
@@ -42,22 +41,9 @@ export default function Hero() {
       </div>
 
       <div className="hero-inner">
-        {/* Logo — top, pt 116px in hero.svg */}
-        <div className="hero-logo-wrap">
-          <LogoSvg
-            variant="light"
-            className="hero-logo"
-            style={{
-              height: 'clamp(145px, 16.8vw, 195px)',
-              width: 'auto',
-              display: 'block',
-            }}
-          />
-        </div>
-
-        {/* Date + CTA — stacked under logo, not vertically centered */}
+        {/* Logo + date + venue (single prepared SVG) */}
         <div className="hero-main">
-          <HeroDateBlock className="hero-date" />
+          <img src={heroLogoDate} alt="День молодёжи 2026 — 27/06, Экстрим-парк «УРАМ»" className="hero-logo-date" />
 
           <div className="hero-cta">
             <a
