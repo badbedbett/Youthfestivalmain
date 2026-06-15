@@ -79,7 +79,7 @@ export default function FAQ() {
             </span>
           </div>
           <h2
-            className="section-display-title"
+            className="section-display-title faq-display-title"
             style={{
               fontFamily: '"Dela Gothic One", cursive',
               fontSize: 'clamp(40px, 5vw, 72px)',
@@ -89,7 +89,7 @@ export default function FAQ() {
               letterSpacing: 0,
             }}
           >
-            ЧАСТО
+            ЧАСТО<span className="faq-hyphen">-</span>
             <span className="gradient-text-faq">ЗАДАВАЕМЫЕ</span>
             ВОПРОСЫ
           </h2>

@@ -177,6 +177,10 @@ html {
   overflow: visible;
 }
 
+.faq-hyphen {
+  display: none;
+}
+
 /* Accordion partners — label on its own line */
 .accordion-partners {
   display: flex;
@@ -230,6 +234,23 @@ html {
     overflow-wrap: anywhere;
     word-break: break-word;
     hyphens: auto;
+  }
+
+  /* FAQ title: force three lines on mobile (ЧАСТО- / ЗАДАВАЕМЫЕ / ВОПРОСЫ) */
+  .faq-display-title {
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: manual;
+  }
+
+  .faq-display-title .gradient-text-faq {
+    display: block;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .faq-hyphen {
+    display: inline;
   }
 
   .sport-header > div:last-child > div:first-child {
