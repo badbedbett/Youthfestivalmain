@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
 import { linkifyText } from '../utils/linkifyText'
+
+export type ProgramPartner = string | { name: string; url?: string }
 
 export type ProgramActivity = {
   id: number
@@ -10,7 +12,7 @@ export type ProgramActivity = {
   place: string
   desc: string | ReactNode
   img: string | null
-  partners: string[] | null
+  partners: ProgramPartner[] | null
   tags: string[]
 }
 
@@ -331,24 +333,37 @@ export default function ProgramSection({
                               При поддержке:
                             </span>
                             <div className="accordion-partner-badges">
-                              {act.partners.map((p, i) => (
-                                <div
-                                  key={i}
-                                  className="accordion-partner-badge"
-                                  style={{
-                                    background: '#FFFFFF',
-                                    border: '2px solid #F18500',
-                                    borderRadius: 8,
-                                    padding: '6px 16px',
-                                    fontFamily: '"Dela Gothic One", cursive',
-                                    fontSize: 13,
-                                    color: '#E8362D',
-                                    letterSpacing: '0.04em',
-                                  }}
-                                >
-                                  {p}
-                                </div>
-                              ))}
+                              {act.partners.map((p, i) => {
+                                const name = typeof p === 'string' ? p : p.name
+                                const url = typeof p === 'string' ? undefined : p.url
+                                const badgeStyle: CSSProperties = {
+                                  background: '#FFFFFF',
+                                  border: '2px solid #F18500',
+                                  borderRadius: 8,
+                                  padding: '6px 16px',
+                                  fontFamily: '"Dela Gothic One", cursive',
+                                  fontSize: 13,
+                                  color: '#E8362D',
+                                  letterSpacing: '0.04em',
+                                }
+
+                                return url ? (
+                                  <a
+                                    key={i}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="accordion-partner-badge"
+                                    style={{ ...badgeStyle, textDecoration: 'none' }}
+                                  >
+                                    {name}
+                                  </a>
+                                ) : (
+                                  <div key={i} className="accordion-partner-badge" style={badgeStyle}>
+                                    {name}
+                                  </div>
+                                )
+                              })}
                             </div>
                           </div>
                         )}
