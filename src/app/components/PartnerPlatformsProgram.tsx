@@ -6,7 +6,7 @@ const partnerActivities = [
   {
     id: 1,
     title: 'Интерактивная зона от Билайна',
-    time: '10:30 – 19:00',
+    time: '10:30 – 20:00',
     place: PLACE,
     desc: `Партнёр фестиваля — Билайн — готовит насыщенную программу активностей для гостей грядущего фестиваля.
 
@@ -76,7 +76,7 @@ export default function PartnerPlatformsProgram() {
       id="partners-program"
       title="ПАРТНЁРСКИЕ ПЛОЩАДКИ"
       titleClassName="gradient-text-full"
-      timeRange="10:00 – 19:00"
+      timeRange="10:00 – 20:00"
       activities={partnerActivities}
     />
   )
