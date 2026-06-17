@@ -4,7 +4,7 @@ const speakers = [
   {
     name: 'Ясмин Буали',
     role: 'Врач-гинеколог и медицинский блогер',
-    accent: '#E8362D',
+    accent: '#BF00FF',
     img: '/images/speakers/yasmin-buali.jpg',
     imgPosition: 'center 18%',
     time: '13:00',
@@ -24,7 +24,7 @@ const speakers = [
   {
     name: 'Дмитрий Яковлев',
     role: 'Эксперт по креативному маркетингу для бизнеса',
-    accent: '#BF00FF',
+    accent: null,
     img: '/images/speakers/dmitry-yakovlev.jpg',
     imgPosition: 'center 22%',
     time: '14:10',
@@ -34,7 +34,7 @@ const speakers = [
   {
     name: 'Елизавета Ливада',
     role: 'Художница, генеративное ИИ-искусство и графический дизайн',
-    accent: null,
+    accent: '#FFDF00',
     img: '/images/speakers/liza-livada.jpg',
     imgPosition: 'center 20%',
     time: '15:20',
@@ -64,7 +64,7 @@ const speakers = [
   {
     name: 'Сергей Мезенцев',
     role: 'Комик, блогер, режиссёр, ведёт шоу «Сережа и микрофон»',
-    accent: '#E8362D',
+    accent: '#FFDF00',
     img: '/images/speakers/sergey-mezentsev.jpg',
     imgPosition: 'center 18%',
     time: '13:00–18:00 / 19:00',
@@ -74,7 +74,7 @@ const speakers = [
   {
     name: 'Виталий Зуев',
     role: 'Победитель 8 сезона КАРДО ВОРКАУТ STATIC',
-    accent: '#FFDF00',
+    accent: null,
     img: '/images/speakers/vitaly-zuev.jpg',
     imgPosition: 'center 20%',
     time: '12:00–19:00',
@@ -104,7 +104,7 @@ const speakers = [
   {
     name: 'Дмитрий Двойнишников',
     role: 'Член сборной России по скейтбордингу, райдер DC shoes',
-    accent: '#FFDF00',
+    accent: null,
     img: '/images/speakers/dmitry-dvoynishnikov.jpg',
     imgPosition: 'center 20%',
     time: '15:00–20:00',
@@ -114,7 +114,7 @@ const speakers = [
   {
     name: 'Эмин Алиев',
     role: 'Райдер команды DC Russia, судья Red Bull Manny Mania',
-    accent: null,
+    accent: '#E8362D',
     img: '/images/speakers/emin-aliev.jpg',
     imgPosition: 'center 22%',
     time: '15:00–20:00',
@@ -144,7 +144,7 @@ const speakers = [
   {
     name: 'Михаил Окатьев',
     role: 'Член сборной РТ по BMX-фристайл',
-    accent: null,
+    accent: '#BF00FF',
     img: '/images/speakers/mikhail-okatev.jpg',
     imgPosition: 'center 20%',
     time: '13:30–16:30',
@@ -154,7 +154,7 @@ const speakers = [
   {
     name: 'Артём Кузнецов',
     role: 'Руководитель спортивного отдела Экстрим-парка «УРАМ»',
-    accent: '#E8362D',
+    accent: null,
     img: '/images/speakers/artem-kuznetsov.jpg',
     imgPosition: 'center 20%',
     time: '15:00–20:00',
