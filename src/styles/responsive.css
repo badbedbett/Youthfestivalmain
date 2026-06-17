@@ -385,18 +385,18 @@ html {
 }
 
 /* Partners logo grid */
-.partners-tier-grid {
+.partners-grid {
   width: 100%;
 }
 
 @media (max-width: 900px) {
-  .partners-org-grid {
+  .partners-grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
 @media (max-width: 560px) {
-  .partners-org-grid {
+  .partners-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }

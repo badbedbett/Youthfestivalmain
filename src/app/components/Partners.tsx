@@ -167,35 +167,28 @@ export default function Partners() {
               </div>
 
               <div
-                style={
-                  tier.key === 'org'
-                    ? { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10, alignItems: 'stretch' }
-                    : {
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-                        gap: 10,
-                        alignItems: 'stretch',
-                        justifyItems: 'center',
-                      }
-                }
-                className={tier.key === 'org' ? 'partners-org-grid' : 'partners-tier-grid'}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: `repeat(${tier.partners.length}, 1fr)`,
+                  gap: 10,
+                  alignItems: 'stretch',
+                }}
+                className="partners-grid"
               >
                 {tier.partners.map(p => {
                   const lp = p as { name: string; logo: string; logoHeight: number }
+                  const isLargeTier = tier.key === 'org' || tier.key === 'gold'
                   return (
                     <div
                       key={p.name}
                       style={{
                         background: '#FFFFFF',
                         borderRadius: 12,
-                        padding: tier.key === 'org' ? '18px 20px' : tier.key === 'gold' ? '20px 32px' : '16px 24px',
+                        padding: isLargeTier ? '18px 20px' : '16px 24px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minWidth: tier.key === 'gold' ? 160 : tier.key === 'org' ? undefined : 120,
-                        width: tier.key === 'org' ? undefined : '100%',
-                        maxWidth: tier.key === 'org' ? undefined : 220,
-                        height: tier.key === 'org' || tier.key === 'gold' ? 72 : 68,
+                        height: isLargeTier ? 72 : 68,
                         border: '2px solid transparent',
                         boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                         cursor: 'default',
