@@ -5,9 +5,10 @@ type ProgramImageProps = {
   alt: string
   className?: string
   style?: React.CSSProperties
+  priority?: boolean
 }
 
-export default function ProgramImage({ src, alt, className, style }: ProgramImageProps) {
+export default function ProgramImage({ src, alt, className, style, priority = false }: ProgramImageProps) {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -34,9 +35,9 @@ export default function ProgramImage({ src, alt, className, style }: ProgramImag
       <img
         src={src}
         alt={alt}
-        loading="eager"
+        loading={priority ? 'eager' : 'lazy'}
         decoding="async"
-        fetchPriority="high"
+        fetchPriority={priority ? 'high' : 'low'}
         onLoad={() => setLoaded(true)}
         style={{
           width: '100%',

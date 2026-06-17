@@ -184,8 +184,9 @@ export default function Programs() {
                 <img
                   src={p.img}
                   alt={p.title}
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   onError={e => {
                     e.currentTarget.style.display = 'none'
                   }}

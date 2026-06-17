@@ -14,7 +14,7 @@ const PROGRAM_CARD_NAMES = [
 const DETAIL_IMAGES: Array<[folder: string, name: string]> = [
   ['sport', 'yaratam'],
   ['sport', 'bmx'],
-  ['sport', 'bmx-street'],
+  ['sport', 'samokat'],
   ['sport', 'workout'],
   ['sport', 'parkour'],
   ['sport', 'dance'],
@@ -50,6 +50,10 @@ export const ALL_PROGRAM_IMAGE_URLS = [
   ...DETAIL_IMAGES.map(([folder, name]) => programImg(folder, name)),
 ]
 
+export const PROGRAM_CARD_IMAGE_URLS = PROGRAM_CARD_NAMES.map(
+  name => `/images/programs/${name}.png`
+)
+
 const preloaded = new Set<string>()
 
 export function preloadImages(urls: Iterable<string | null | undefined>) {
@@ -63,5 +67,5 @@ export function preloadImages(urls: Iterable<string | null | undefined>) {
 }
 
 export function preloadAllProgramImages() {
-  preloadImages(ALL_PROGRAM_IMAGE_URLS)
+  preloadImages(PROGRAM_CARD_IMAGE_URLS)
 }

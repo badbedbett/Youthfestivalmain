@@ -26,8 +26,8 @@
 | Имя файла | Блок |
 |---|---|
 | `yaratam.png` | Яратам |
-| `bmx.png` | BMX и самокат (СберСпот) |
-| `bmx-street.png` | BMX Стрит |
+| `bmx.png` | BMX + BMX Стрит |
+| `samokat.png` | Самокат |
 | `workout.png` | Воркаут |
 | `parkour.png` | Паркур |
 | `dance.png` | Танцевальная площадка |
