@@ -384,22 +384,7 @@ html {
   }
 }
 
-/* Partners logo grid */
-.partners-grid {
-  width: 100%;
-}
-
-@media (max-width: 900px) {
-  .partners-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-@media (max-width: 560px) {
-  .partners-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
+/* Partners — fixed-size cards, equal gap (layout in Partners.tsx) */
 
 /* Stats cards equal height */
 .stats-grid {

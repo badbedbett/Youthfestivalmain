@@ -13,20 +13,23 @@ import infoLogo4 from '../../imports/Group-1-1.svg?raw'
 import infoLogo5 from '../../imports/Mask_group.svg?raw'
 import infoLogo6 from '../../imports/_________________________________2.svg?raw'
 
-// logoHeight: индивидуальный подбор под визуальный баланс
-// AR = w/h исходного SVG; целевая ширина ~100–120px для горизонтальных,
-// ~40–50px для квадратных/вертикальных — компенсируется одинаковой ПЛОЩАДЬЮ
+const CARD_WIDTH = 200
+const CARD_HEIGHT = 72
+const CARD_GAP = 16
+const LOGO_BOX_WIDTH = 136
+const LOGO_BOX_HEIGHT = 40
+
 const tiers = [
   {
     key: 'org',
     label: 'Организаторы',
     accent: '#E8362D',
     partners: [
-      { name: 'org-1', logo: orgLogo1, logoHeight: 19 }, // 283×41 AR6.9 → ~131px wide
-      { name: 'org-2', logo: orgLogo2, logoHeight: 26 }, // 283×68 AR4.2 → ~109px wide
-      { name: 'org-3', logo: orgLogo3, logoHeight: 24 }, // 233×59 AR3.95 → ~95px wide
-      { name: 'org-4', logo: orgLogo4, logoHeight: 24 }, // 297×67 AR4.43 → ~106px wide
-      { name: 'org-5', logo: orgLogo5, logoHeight: 22 }, // 193×52 AR3.71 → ~82px wide
+      { name: 'org-1', logo: orgLogo1 },
+      { name: 'org-2', logo: orgLogo2 },
+      { name: 'org-3', logo: orgLogo3 },
+      { name: 'org-4', logo: orgLogo4 },
+      { name: 'org-5', logo: orgLogo5 },
     ],
   },
   {
@@ -34,9 +37,9 @@ const tiers = [
     label: 'Генеральные партнёры',
     accent: '#F18500',
     partners: [
-      { name: 'gold-1', logo: goldLogo1, logoHeight: 20 }, // 332×53 AR6.3 → ~126px wide
-      { name: 'gold-2', logo: goldLogo2, logoHeight: 38 }, // 299×90 AR3.3 → ~126px wide
-      { name: 'gold-3', logo: goldLogo3, logoHeight: 22 }, // 245×46 AR5.3 → ~117px wide
+      { name: 'gold-1', logo: goldLogo1 },
+      { name: 'gold-2', logo: goldLogo2 },
+      { name: 'gold-3', logo: goldLogo3 },
     ],
   },
   {
@@ -44,10 +47,10 @@ const tiers = [
     label: 'Информационные партнёры',
     accent: '#FFDF00',
     partners: [
-      { name: 'info-3', logo: infoLogo3, logoHeight: 20 }, // 169×43 AR3.9 → ~79px wide
-      { name: 'info-4', logo: infoLogo4, logoHeight: 26 }, // 119×58 AR2.1 → ~53px wide
-      { name: 'info-5', logo: infoLogo5, logoHeight: 26 }, // 149×72 AR2.1 → ~54px wide
-      { name: 'info-6', logo: infoLogo6, logoHeight: 26 }, // 115×72 AR1.6 → ~41px wide
+      { name: 'info-3', logo: infoLogo3 },
+      { name: 'info-4', logo: infoLogo4 },
+      { name: 'info-5', logo: infoLogo5 },
+      { name: 'info-6', logo: infoLogo6 },
     ],
   },
   {
@@ -55,19 +58,19 @@ const tiers = [
     label: 'в рамках:',
     accent: '#BF00FF',
     partners: [
-      { name: 'info-1', logo: infoLogo1, logoHeight: 34 }, // 124×102 AR1.2 → ~40px wide
-      { name: 'info-2', logo: infoLogo2, logoHeight: 34 }, // 98×111 AR0.88 → ~30px wide
+      { name: 'info-1', logo: infoLogo1 },
+      { name: 'info-2', logo: infoLogo2 },
     ],
   },
 ]
 
-function renderLogo(logo: string, logoHeight: number) {
+function renderLogo(logo: string) {
   return logo
     .replace(/\s+width="[^"]*"/, '')
     .replace(/\s+height="[^"]*"/, '')
     .replace(
       '<svg ',
-      `<svg style="width:auto;height:${logoHeight}px;display:block;flex-shrink:0" preserveAspectRatio="xMidYMid meet" `
+      '<svg class="partner-logo-svg" preserveAspectRatio="xMidYMid meet" '
     )
 }
 
@@ -166,80 +169,89 @@ export default function Partners() {
                 </span>
               </div>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: `repeat(${tier.partners.length}, 1fr)`,
-                  gap: 10,
-                  alignItems: 'stretch',
-                }}
-                className="partners-grid"
-              >
-                {tier.partners.map(p => {
-                  const lp = p as { name: string; logo: string; logoHeight: number }
-                  const isLargeTier = tier.key === 'org' || tier.key === 'gold'
-                  return (
+              <div className="partners-row" style={{ gap: CARD_GAP }}>
+                {tier.partners.map(p => (
+                  <div
+                    key={p.name}
+                    className="partner-card"
+                    style={{
+                      width: CARD_WIDTH,
+                      height: CARD_HEIGHT,
+                      background: '#FFFFFF',
+                      borderRadius: 12,
+                      border: '2px solid transparent',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                      cursor: 'default',
+                      transition: 'border-color 0.2s, box-shadow 0.2s, transform 0.15s',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                    }}
+                    onMouseEnter={e => {
+                      const t = e.currentTarget as HTMLElement
+                      t.style.borderColor = tier.accent
+                      t.style.boxShadow = `0 6px 20px ${tier.accent}28`
+                      t.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseLeave={e => {
+                      const t = e.currentTarget as HTMLElement
+                      t.style.borderColor = 'transparent'
+                      t.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)'
+                      t.style.transform = 'translateY(0)'
+                    }}
+                  >
                     <div
-                      key={p.name}
                       style={{
-                        background: '#FFFFFF',
-                        borderRadius: 12,
-                        padding: isLargeTier ? '18px 20px' : '16px 24px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        height: isLargeTier ? 72 : 68,
-                        border: '2px solid transparent',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                        cursor: 'default',
-                        transition: 'border-color 0.2s, box-shadow 0.2s, transform 0.15s',
-                        position: 'relative',
-                        overflow: 'hidden',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 3,
+                        borderRadius: '10px 10px 0 0',
+                        background: tier.accent,
                       }}
-                      onMouseEnter={e => {
-                        const t = e.currentTarget as HTMLElement
-                        t.style.borderColor = tier.accent
-                        t.style.boxShadow = `0 6px 20px ${tier.accent}28`
-                        t.style.transform = 'translateY(-2px)'
+                    />
+                    <div
+                      className="partner-card-logo"
+                      style={{
+                        width: LOGO_BOX_WIDTH,
+                        height: LOGO_BOX_HEIGHT,
                       }}
-                      onMouseLeave={e => {
-                        const t = e.currentTarget as HTMLElement
-                        t.style.borderColor = 'transparent'
-                        t.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)'
-                        t.style.transform = 'translateY(0)'
-                      }}
-                    >
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          height: 3,
-                          borderRadius: '10px 10px 0 0',
-                          background: tier.accent,
-                        }}
-                      />
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          padding: '6px 12px',
-                          boxSizing: 'border-box',
-                          width: '100%',
-                          height: '100%',
-                        }}
-                        dangerouslySetInnerHTML={{ __html: renderLogo(lp.logo, lp.logoHeight) }}
-                      />
-                    </div>
-                  )
-                })}
+                      dangerouslySetInnerHTML={{ __html: renderLogo(p.logo) }}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        .partners-row {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+        }
+        .partner-card {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .partner-card-logo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+        }
+        .partner-card-logo .partner-logo-svg {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+        }
+      `}</style>
     </section>
   )
 }
