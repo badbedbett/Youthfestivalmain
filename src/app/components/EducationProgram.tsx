@@ -14,6 +14,13 @@ type Person = {
   img?: string
 }
 
+function formatBio(bio: string): string {
+  const trimmed = bio.trim()
+  if (!trimmed) return ''
+  const text = trimmed.charAt(0).toUpperCase() + trimmed.slice(1)
+  return /[.!?…]$/.test(text) ? text : `${text}.`
+}
+
 const avatarStyle = {
   width: 48,
   height: 48,
@@ -105,7 +112,7 @@ function SpeakerBlock({ title, people }: { title: string; people: Person[] }) {
                     lineHeight: 1.5,
                   }}
                 >
-                  {person.bio}
+                  {formatBio(person.bio)}
                 </div>
               ) : null}
             </div>
@@ -141,17 +148,17 @@ const educationActivities = [
           people: [
             {
               name: 'Лера Вейв',
-              bio: 'психолог, блогер, ментор-мотиватор',
+              bio: 'Психолог, блогер, ментор-мотиватор.',
               img: eduImg('lera-veiv.jpg'),
             },
             {
               name: 'Ясмин Буали',
-              bio: 'врач-гинеколог и медицинский блогер, создаёт научно-популярный контент о женском здоровье в социальных сетях',
+              bio: 'Врач-гинеколог и медицинский блогер, создаёт научно-популярный контент о женском здоровье в социальных сетях.',
               img: eduImg('yasmin-buali.jpg'),
             },
             {
               name: 'Алсу Рахимова',
-              bio: 'врач онколог-маммолог, член POOM.RUSSCO.AOP',
+              bio: 'Врач онколог-маммолог, член POOM.RUSSCO.AOP.',
               img: eduImg('alsu-rakhimova.jpg'),
             },
           ],
@@ -161,7 +168,7 @@ const educationActivities = [
           people: [
             {
               name: 'Анастасия Ивашкевич',
-              bio: 'продюсер специальных проектов арт-резиденции РЕАКТОР, клинический психолог, лектор, диджей',
+              bio: 'Продюсер специальных проектов арт-резиденции РЕАКТОР, клинический психолог, лектор, диджей.',
               img: eduImg('anastasia-ivashkevich.jpg'),
             },
           ],
@@ -185,7 +192,7 @@ const educationActivities = [
           people: [
             {
               name: 'Дмитрий Яковлев',
-              bio: 'эксперт по креативному маркетингу для бизнеса. Клиенты: ДоДо, Брусника, Золотое яблоко, 2 ГИС',
+              bio: 'Эксперт по креативному маркетингу для бизнеса. Клиенты: ДоДо, Брусника, Золотое яблоко, 2 ГИС.',
               img: eduImg('dmitry-yakovlev.jpg'),
             },
           ],
@@ -213,7 +220,7 @@ const educationActivities = [
           people: [
             {
               name: 'Лиза Ливада',
-              bio: 'художница, работающая в поле новых медиа, генеративного ИИ-искусства и графического дизайна. Основательница международной образовательной платформы Livada School.',
+              bio: 'Художница, работающая в поле новых медиа, генеративного ИИ-искусства и графического дизайна. Основательница международной образовательной платформы Livada School.',
               img: eduImg('liza-livada.jpg'),
             },
           ],
@@ -223,7 +230,7 @@ const educationActivities = [
           people: [
             {
               name: 'Мария Квад',
-              bio: 'куратор и арт-менеджер',
+              bio: 'Куратор и арт-менеджер.',
               img: eduImg('maria-kvad.jpg'),
             },
           ],
@@ -248,7 +255,7 @@ const educationActivities = [
           people: [
             {
               name: 'Тимур Далгатов',
-              bio: 'фермер, блогер-миллионник, амбассадор Ushatava, Forbes «30 до 30»',
+              bio: 'Фермер, блогер-миллионник, амбассадор Ushatava, Forbes «30 до 30».',
               img: eduImg('timur-dalgatov.jpg'),
             },
           ],
@@ -276,7 +283,7 @@ const educationActivities = [
           people: [
             {
               name: 'Сергей Мезенцев',
-              bio: 'комик, блогер, режиссёр, музыкант и подкастер, ведёт шоу «Сережа и микрофон»',
+              bio: 'Комик, блогер, режиссёр, музыкант и подкастер, ведёт шоу «Сережа и микрофон».',
               img: eduImg('sergey-mezentsev.jpg'),
             },
           ],
