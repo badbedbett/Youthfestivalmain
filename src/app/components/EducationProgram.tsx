@@ -30,17 +30,15 @@ function SpeakerBlock({ title, people }: { title: string; people: Person[] }) {
       >
         {title}
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {people.map(person => (
           <div
             key={person.name}
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: 140,
-              textAlign: 'center',
-              gap: 8,
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: 14,
             }}
           >
             {person.img ? (
@@ -50,52 +48,59 @@ function SpeakerBlock({ title, people }: { title: string; people: Person[] }) {
                 loading="lazy"
                 decoding="async"
                 style={{
-                  width: 72,
-                  height: 72,
+                  width: 64,
+                  height: 64,
                   borderRadius: '50%',
                   objectFit: 'cover',
                   objectPosition: 'center 20%',
                   border: '2px solid rgba(232,54,45,0.25)',
+                  flexShrink: 0,
                   display: 'block',
                 }}
               />
-            ) : null}
-            {person.label && (
-              <span
-                style={{
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: 10,
-                  fontWeight: 700,
-                  color: '#F18500',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {person.label}
-              </span>
+            ) : (
+              <div style={{ width: 64, flexShrink: 0 }} />
             )}
-            <span
-              style={{
-                fontFamily: '"Dela Gothic One", cursive',
-                fontSize: 12,
-                color: '#111111',
-                lineHeight: 1.25,
-              }}
-            >
-              {person.name}
-            </span>
-            {person.bio ? (
-              <span
+            <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
+              {person.label && (
+                <div
+                  style={{
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: 10,
+                    fontWeight: 700,
+                    color: '#F18500',
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    marginBottom: 4,
+                  }}
+                >
+                  {person.label}
+                </div>
+              )}
+              <div
                 style={{
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: 12,
-                  color: '#555555',
-                  lineHeight: 1.45,
+                  fontFamily: '"Dela Gothic One", cursive',
+                  fontSize: 13,
+                  color: '#111111',
+                  lineHeight: 1.25,
+                  marginBottom: person.bio ? 4 : 0,
                 }}
               >
-                {person.bio}
-              </span>
-            ) : null}
+                {person.name}
+              </div>
+              {person.bio ? (
+                <div
+                  style={{
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: 13,
+                    color: '#555555',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {person.bio}
+                </div>
+              ) : null}
+            </div>
           </div>
         ))}
       </div>
