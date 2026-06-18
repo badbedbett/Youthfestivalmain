@@ -32,15 +32,17 @@ html {
 .sport-header-title {
   grid-column: 1;
   min-width: 0;
+  align-self: start;
 }
 
-.sport-header-title .section-display-title,
-.sport-header-title .section-display-title .gradient-text-warm,
-.sport-header-title .section-display-title .gradient-text-full {
+.program-section .sport-header-title .section-display-title,
+.program-section .sport-header-title .section-display-title .gradient-text-warm,
+.program-section .sport-header-title .section-display-title .gradient-text-full {
+  display: block;
   width: max-content;
   max-width: none;
-  padding-top: 0;
-  margin-top: 0;
+  padding: 0;
+  margin: 0;
   line-height: 1.12;
 }
 
@@ -81,9 +83,9 @@ html {
     grid-column: auto;
   }
 
-  .sport-header-title .section-display-title,
-  .sport-header-title .section-display-title .gradient-text-warm,
-  .sport-header-title .section-display-title .gradient-text-full {
+  .program-section .sport-header-title .section-display-title,
+  .program-section .sport-header-title .section-display-title .gradient-text-warm,
+  .program-section .sport-header-title .section-display-title .gradient-text-full {
     width: auto;
     max-width: 100%;
     white-space: normal !important;
