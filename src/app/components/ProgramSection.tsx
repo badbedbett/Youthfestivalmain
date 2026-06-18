@@ -3,6 +3,9 @@ import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
 import { linkifyText } from '../utils/linkifyText'
 import { renderPartnerName } from '../utils/renderPartnerName'
+import {
+  applyProgramSectionTitleSize,
+} from '../utils/measureProgramTitleFontSize'
 
 export type ProgramPartner = string | { name: string; url?: string }
 
@@ -50,43 +53,23 @@ export default function ProgramSection({
     const bodyEl = headerBodyRef.current
     if (!titleEl || !bodyEl) return
 
-    const fitTitle = () => {
-      titleEl.style.fontSize = ''
-      titleEl.style.whiteSpace = ''
-
-      if (window.innerWidth <= 768) return
-
-      const meta = bodyEl.querySelector('.sport-header-meta') as HTMLElement | null
-      const logo = bodyEl.querySelector('.sport-header-logo-wrap') as HTMLElement | null
-      const gap = 48
-      const metaWidth = meta?.offsetWidth ?? 260
-      const logoWidth = logo?.offsetWidth ?? 0
-      const logoGap = logoWidth ? 24 : 0
-      const available = bodyEl.clientWidth - metaWidth - gap - logoWidth - logoGap
-
-      if (available <= 0) return
-
-      titleEl.style.whiteSpace = 'nowrap'
-      let size = Number.parseFloat(getComputedStyle(titleEl).fontSize)
-      const minSize = 42
-
-      while (size > minSize && titleEl.scrollWidth > available) {
-        size -= 1
-        titleEl.style.fontSize = `${size}px`
-      }
+    const applyTitleSize = () => {
+      requestAnimationFrame(() => {
+        applyProgramSectionTitleSize(bodyEl)
+      })
     }
 
-    const runFit = () => {
+    const runApply = () => {
       if (document.fonts?.ready) {
-        document.fonts.ready.then(fitTitle).catch(fitTitle)
+        document.fonts.ready.then(applyTitleSize).catch(applyTitleSize)
       } else {
-        fitTitle()
+        applyTitleSize()
       }
     }
 
-    runFit()
-    window.addEventListener('resize', fitTitle)
-    return () => window.removeEventListener('resize', fitTitle)
+    runApply()
+    window.addEventListener('resize', applyTitleSize)
+    return () => window.removeEventListener('resize', applyTitleSize)
   }, [title, timeRange, location, headerLogo])
 
   useEffect(() => {
@@ -164,7 +147,6 @@ export default function ProgramSection({
                 className="section-display-title sport-header-title-text"
                 style={{
                   fontFamily: '"Dela Gothic One", cursive',
-                  fontSize: 'clamp(42px, 6vw, 88px)',
                   lineHeight: 1.12,
                   margin: 0,
                   letterSpacing: 0,

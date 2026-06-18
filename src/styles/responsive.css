@@ -20,18 +20,30 @@ html {
 
 .sport-header-body {
   display: grid;
-  grid-template-columns: auto 48px auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 48px auto;
   align-items: start;
   width: 100%;
 }
 
 .sport-header-body:has(.sport-header-logo-wrap) {
-  grid-template-columns: auto 48px auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) 48px auto auto;
+}
+
+.sport-header-body:has(.sport-header-logo-wrap) .sport-header-meta {
+  grid-column: 3;
+}
+
+.sport-header-logo-wrap {
+  grid-column: 4;
+  justify-self: end;
+  align-self: start;
+  margin-left: 24px;
 }
 
 .sport-header-title {
   grid-column: 1;
   min-width: 0;
+  width: 100%;
   align-self: start;
 }
 
@@ -39,11 +51,17 @@ html {
 .program-section .sport-header-title .section-display-title .gradient-text-warm,
 .program-section .sport-header-title .section-display-title .gradient-text-full {
   display: block;
-  width: max-content;
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
   padding: 0;
   margin: 0;
   line-height: 1.12;
+  white-space: normal;
+  word-break: normal;
+}
+
+.program-section .sport-header-title-text {
+  font-size: var(--program-section-title-size, clamp(42px, 6vw, 88px)) !important;
 }
 
 .sport-header-meta {
@@ -56,12 +74,6 @@ html {
   margin: 0;
   padding: 0;
   line-height: 1.12;
-}
-
-.sport-header-logo-wrap {
-  grid-column: 5;
-  justify-self: end;
-  align-self: start;
 }
 
 @media (max-width: 768px) {
@@ -86,9 +98,13 @@ html {
   .program-section .sport-header-title .section-display-title,
   .program-section .sport-header-title .section-display-title .gradient-text-warm,
   .program-section .sport-header-title .section-display-title .gradient-text-full {
-    width: auto;
+    width: 100%;
     max-width: 100%;
     white-space: normal !important;
+  }
+
+  .program-section .sport-header-title-text {
+    font-size: var(--program-section-title-size, clamp(42px, 6vw, 88px)) !important;
   }
 
   .sport-header-meta {
@@ -302,7 +318,7 @@ html {
     hyphens: auto;
   }
 
-  .program-section .section-display-title {
+  .program-section .section-display-title:not(.sport-header-title-text) {
     font-size: clamp(20px, 5.6vw, 30px) !important;
     line-height: 1.1 !important;
   }
