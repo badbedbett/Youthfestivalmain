@@ -111,73 +111,74 @@ export default function ProgramSection({
             </div>
           </div>
 
-          <div className="sport-header-title">
-            <h2
-              className="section-display-title"
-              style={{
-                fontFamily: '"Dela Gothic One", cursive',
-                fontSize: 'clamp(42px, 6vw, 88px)',
-                lineHeight: 1.12,
-                margin: 0,
-                letterSpacing: 0,
-                color: '#000000',
-                maxWidth: '100%',
-              }}
-            >
-              <span className={titleClassName}>{title}</span>
-            </h2>
-          </div>
-
-          <div className="sport-header-meta">
-            <div
-              className="sport-header-time"
-              style={{
-                fontFamily: '"Dela Gothic One", cursive',
-                fontSize: 'clamp(20px, 2.5vw, 36px)',
-                color: 'rgba(232,54,45,0.15)',
-                letterSpacing: '0.05em',
-                lineHeight: 1.12,
-              }}
-            >
-              {timeRange}
-            </div>
-            <p
-              className="program-section-location"
-              style={{
-                fontFamily: '"Inter", sans-serif',
-                fontSize: 15,
-                color: '#666666',
-                lineHeight: 1.6,
-                marginTop: 8,
-                marginBottom: 0,
-              }}
-            >
-              {location ?? (
-                <>
-                  Экстрим-парк «УРАМ»
-                  <br />
-                  Кремлёвская набережная, 33
-                </>
-              )}
-            </p>
-          </div>
-
-          {headerLogo && (
-            <div className="sport-header-logo-wrap">
-              <img
-                src={headerLogo}
-                alt={headerLogoAlt}
-                className="program-header-logo"
+          <div className="sport-header-body">
+            <div className="sport-header-title">
+              <h2
+                className="section-display-title"
                 style={{
-                  height: 'clamp(48px, 6vw, 72px)',
-                  width: 'auto',
-                  flexShrink: 0,
-                  filter: 'brightness(0)',
-                  opacity: 0.25,
+                  fontFamily: '"Dela Gothic One", cursive',
+                  fontSize: 'clamp(42px, 6vw, 88px)',
+                  lineHeight: 1.12,
+                  margin: 0,
+                  letterSpacing: 0,
+                  color: '#000000',
                 }}
-              />
+              >
+                <span className={titleClassName}>{title}</span>
+              </h2>
             </div>
-          )}
+
+            <div className="sport-header-meta">
+              <div
+                className="sport-header-time"
+                style={{
+                  fontFamily: '"Dela Gothic One", cursive',
+                  fontSize: 'clamp(20px, 2.5vw, 36px)',
+                  color: 'rgba(232,54,45,0.15)',
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.12,
+                }}
+              >
+                {timeRange}
+              </div>
+              <p
+                className="program-section-location"
+                style={{
+                  fontFamily: '"Inter", sans-serif',
+                  fontSize: 15,
+                  color: '#666666',
+                  lineHeight: 1.6,
+                  marginTop: 8,
+                  marginBottom: 0,
+                }}
+              >
+                {location ?? (
+                  <>
+                    Экстрим-парк «УРАМ»
+                    <br />
+                    Кремлёвская набережная, 33
+                  </>
+                )}
+              </p>
+            </div>
+
+            {headerLogo && (
+              <div className="sport-header-logo-wrap">
+                <img
+                  src={headerLogo}
+                  alt={headerLogoAlt}
+                  className="program-header-logo"
+                  style={{
+                    height: 'clamp(48px, 6vw, 72px)',
+                    width: 'auto',
+                    flexShrink: 0,
+                    filter: 'brightness(0)',
+                    opacity: 0.25,
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

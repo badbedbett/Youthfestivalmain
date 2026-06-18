@@ -13,67 +13,67 @@ html {
 
 /* Program section header */
 .sport-header {
-  display: grid;
-  grid-template-columns: minmax(0, 704px) minmax(240px, 1fr) auto;
-  grid-template-rows: auto auto;
-  column-gap: 48px;
-  row-gap: 16px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.sport-header-eyebrow {
-  grid-column: 1;
-  grid-row: 1;
+.sport-header-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
 }
 
 .sport-header-title {
-  grid-column: 1;
-  grid-row: 2;
-  min-width: 0;
+  flex: 0 1 auto;
+  width: max-content;
+  max-width: calc(100% - 320px);
+}
+
+.sport-header-title .section-display-title {
+  width: max-content;
+  max-width: 100%;
 }
 
 .sport-header-meta {
-  grid-column: 2;
-  grid-row: 2;
-  align-self: start;
+  flex: 0 0 auto;
+  min-width: 240px;
 }
 
 .sport-header-logo-wrap {
-  grid-column: 3;
-  grid-row: 1 / span 2;
-  align-self: start;
-  justify-self: end;
-}
-
-@media (max-width: 1100px) and (min-width: 769px) {
-  .sport-header {
-    grid-template-columns: minmax(0, 58%) minmax(0, 1fr) auto;
-    column-gap: clamp(24px, 4vw, 48px);
-  }
+  flex: 0 0 auto;
+  margin-left: auto;
+  align-self: flex-start;
 }
 
 @media (max-width: 768px) {
   .sport-header {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto;
     gap: 20px !important;
     margin-bottom: 40px !important;
   }
 
-  .sport-header-eyebrow,
-  .sport-header-title,
-  .sport-header-meta,
-  .sport-header-logo-wrap {
-    grid-column: 1;
-    grid-row: auto;
+  .sport-header-body {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sport-header-title {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .sport-header-title .section-display-title {
+    width: auto;
   }
 
   .sport-header-meta {
+    min-width: 0;
     text-align: left !important;
   }
 
   .sport-header-logo-wrap {
-    justify-self: start;
+    margin-left: 0;
   }
 }
 
@@ -411,9 +411,9 @@ html {
 
   .sport-header {
     max-width: 100%;
-    overflow: hidden;
   }
 
+  .sport-header-body,
   .sport-header-eyebrow,
   .sport-header-title,
   .sport-header-meta {
