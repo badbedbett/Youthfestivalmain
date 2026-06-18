@@ -4,7 +4,7 @@ import { preloadImages } from '../utils/preloadImages'
 import { linkifyText } from '../utils/linkifyText'
 import { renderPartnerName } from '../utils/renderPartnerName'
 import {
-  applyProgramSectionTitleSize,
+  scheduleProgramSectionTitleSize,
 } from '../utils/measureProgramTitleFontSize'
 
 export type ProgramPartner = string | { name: string; url?: string }
@@ -54,9 +54,7 @@ export default function ProgramSection({
     if (!titleEl || !bodyEl) return
 
     const applyTitleSize = () => {
-      requestAnimationFrame(() => {
-        applyProgramSectionTitleSize(bodyEl)
-      })
+      scheduleProgramSectionTitleSize(bodyEl)
     }
 
     const runApply = () => {

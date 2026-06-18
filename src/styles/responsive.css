@@ -50,18 +50,19 @@ html {
 .program-section .sport-header-title .section-display-title,
 .program-section .sport-header-title .section-display-title .gradient-text-warm,
 .program-section .sport-header-title .section-display-title .gradient-text-full {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-  line-height: 1.12;
-  white-space: normal;
-  word-break: normal;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.12 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
 }
 
 .program-section .sport-header-title-text {
-  font-size: var(--program-section-title-size, clamp(42px, 6vw, 88px)) !important;
+  font-size: var(--program-section-title-size, clamp(48px, 7vw, 120px)) !important;
 }
 
 .sport-header-meta {
@@ -98,13 +99,16 @@ html {
   .program-section .sport-header-title .section-display-title,
   .program-section .sport-header-title .section-display-title .gradient-text-warm,
   .program-section .sport-header-title .section-display-title .gradient-text-full {
-    width: 100%;
-    max-width: 100%;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
     white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
   }
 
   .program-section .sport-header-title-text {
-    font-size: var(--program-section-title-size, clamp(42px, 6vw, 88px)) !important;
+    font-size: var(--program-section-title-size, clamp(28px, 8vw, 44px)) !important;
   }
 
   .sport-header-meta {
