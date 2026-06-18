@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
 import { linkifyText } from '../utils/linkifyText'
@@ -42,6 +42,52 @@ export default function ProgramSection({
 }: ProgramSectionProps) {
   const [openId, setOpenId] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const headerBodyRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+
+  useLayoutEffect(() => {
+    const titleEl = titleRef.current
+    const bodyEl = headerBodyRef.current
+    if (!titleEl || !bodyEl) return
+
+    const fitTitle = () => {
+      titleEl.style.fontSize = ''
+      titleEl.style.whiteSpace = ''
+
+      if (window.innerWidth <= 768) return
+
+      const meta = bodyEl.querySelector('.sport-header-meta') as HTMLElement | null
+      const logo = bodyEl.querySelector('.sport-header-logo-wrap') as HTMLElement | null
+      const gap = 48
+      const metaWidth = meta?.offsetWidth ?? 260
+      const logoWidth = logo?.offsetWidth ?? 0
+      const logoGap = logoWidth ? 24 : 0
+      const available = bodyEl.clientWidth - metaWidth - gap - logoWidth - logoGap
+
+      if (available <= 0) return
+
+      titleEl.style.whiteSpace = 'nowrap'
+      let size = Number.parseFloat(getComputedStyle(titleEl).fontSize)
+      const minSize = 42
+
+      while (size > minSize && titleEl.scrollWidth > available) {
+        size -= 1
+        titleEl.style.fontSize = `${size}px`
+      }
+    }
+
+    const runFit = () => {
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(fitTitle).catch(fitTitle)
+      } else {
+        fitTitle()
+      }
+    }
+
+    runFit()
+    window.addEventListener('resize', fitTitle)
+    return () => window.removeEventListener('resize', fitTitle)
+  }, [title, timeRange, location, headerLogo])
 
   useEffect(() => {
     const el = sectionRef.current
@@ -111,10 +157,11 @@ export default function ProgramSection({
             </div>
           </div>
 
-          <div className="sport-header-body">
+          <div className="sport-header-body" ref={headerBodyRef}>
             <div className="sport-header-title">
               <h2
-                className="section-display-title"
+                ref={titleRef}
+                className="section-display-title sport-header-title-text"
                 style={{
                   fontFamily: '"Dela Gothic One", cursive',
                   fontSize: 'clamp(42px, 6vw, 88px)',

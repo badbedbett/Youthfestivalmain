@@ -19,32 +19,47 @@ html {
 }
 
 .sport-header-body {
-  display: flex;
-  align-items: flex-start;
-  gap: 48px;
+  display: grid;
+  grid-template-columns: auto 48px auto minmax(0, 1fr);
+  align-items: start;
   width: 100%;
 }
 
-.sport-header-title {
-  flex: 0 1 auto;
-  width: max-content;
-  max-width: calc(100% - 320px);
+.sport-header-body:has(.sport-header-logo-wrap) {
+  grid-template-columns: auto 48px auto minmax(0, 1fr) auto;
 }
 
-.sport-header-title .section-display-title {
+.sport-header-title {
+  grid-column: 1;
+  min-width: 0;
+}
+
+.sport-header-title .section-display-title,
+.sport-header-title .section-display-title .gradient-text-warm,
+.sport-header-title .section-display-title .gradient-text-full {
   width: max-content;
-  max-width: 100%;
+  max-width: none;
+  padding-top: 0;
+  margin-top: 0;
+  line-height: 1.12;
 }
 
 .sport-header-meta {
-  flex: 0 0 auto;
+  grid-column: 3;
   min-width: 240px;
+  align-self: start;
+}
+
+.sport-header-time {
+  margin: 0;
+  padding: 0;
+  line-height: 1.12;
 }
 
 .sport-header-logo-wrap {
-  flex: 0 0 auto;
-  margin-left: auto;
-  align-self: flex-start;
+  grid-column: 5;
+  justify-self: end;
+  align-self: start;
 }
 
 @media (max-width: 768px) {
@@ -53,18 +68,25 @@ html {
     margin-bottom: 40px !important;
   }
 
-  .sport-header-body {
+  .sport-header-body,
+  .sport-header-body:has(.sport-header-logo-wrap) {
+    display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
-  .sport-header-title {
-    width: auto;
-    max-width: 100%;
+  .sport-header-title,
+  .sport-header-meta,
+  .sport-header-logo-wrap {
+    grid-column: auto;
   }
 
-  .sport-header-title .section-display-title {
+  .sport-header-title .section-display-title,
+  .sport-header-title .section-display-title .gradient-text-warm,
+  .sport-header-title .section-display-title .gradient-text-full {
     width: auto;
+    max-width: 100%;
+    white-space: normal !important;
   }
 
   .sport-header-meta {
@@ -73,7 +95,7 @@ html {
   }
 
   .sport-header-logo-wrap {
-    margin-left: 0;
+    justify-self: start;
   }
 }
 
