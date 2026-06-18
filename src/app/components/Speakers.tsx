@@ -301,7 +301,7 @@ export default function Speakers() {
                         }}
                       />
                     </div>
-                    <div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                       <div
                         style={{
                           fontFamily: '"Dela Gothic One", cursive',
@@ -315,11 +315,12 @@ export default function Speakers() {
                         {sp.name}
                       </div>
                       <div
+                        className="speaker-role"
                         style={{
                           fontFamily: '"Inter", sans-serif',
                           fontSize: 'clamp(9px, 0.75vw, 11px)',
                           color: subColor,
-                          lineHeight: 1.3,
+                          lineHeight: 1.35,
                         }}
                       >
                         {sp.role}
@@ -388,7 +389,7 @@ export default function Speakers() {
 
       <style>{`
         .speaker-flip-container {
-          height: 155px;
+          height: 200px;
         }
         .speaker-flip-inner {
           position: relative;
@@ -411,6 +412,8 @@ export default function Speakers() {
           gap: 10px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
+        }
+        .speaker-front {
           overflow: hidden;
         }
         .speaker-back {
@@ -418,17 +421,16 @@ export default function Speakers() {
           justify-content: center;
           gap: 0;
           border: 1px solid rgba(255,255,255,0.12);
+          overflow: hidden;
         }
         @media (max-width: 1100px) {
           .speakers-grid { grid-template-columns: repeat(4, 1fr) !important; }
         }
         @media (max-width: 700px) {
           .speakers-grid { grid-template-columns: repeat(3, 1fr) !important; }
-          .speaker-flip-container { height: 160px; }
         }
         @media (max-width: 480px) {
           .speakers-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .speaker-flip-container { height: 150px; }
         }
       `}</style>
     </section>

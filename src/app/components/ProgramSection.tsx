@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
 import { linkifyText } from '../utils/linkifyText'
+import { renderPartnerName } from '../utils/renderPartnerName'
 
 export type ProgramPartner = string | { name: string; url?: string }
 
@@ -84,18 +85,9 @@ export default function ProgramSection({
       />
 
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 40,
-            marginBottom: 56,
-            alignItems: 'end',
-          }}
-          className="sport-header"
-        >
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+        <div className="sport-header" style={{ marginBottom: 56 }}>
+          <div className="sport-header-eyebrow">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
               <div
                 style={{
                   width: 36,
@@ -117,6 +109,9 @@ export default function ProgramSection({
                 Детальная программа
               </span>
             </div>
+          </div>
+
+          <div className="sport-header-title">
             <h2
               className="section-display-title"
               style={{
@@ -132,52 +127,64 @@ export default function ProgramSection({
               <span className={titleClassName}>{title}</span>
             </h2>
           </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24 }}>
-            <div>
-              <div
-                style={{
-                  fontFamily: '"Dela Gothic One", cursive',
-                  fontSize: 'clamp(20px, 2.5vw, 36px)',
-                  color: 'rgba(232,54,45,0.15)',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {timeRange}
+
+          <div className="sport-header-meta">
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+                gap: 24,
+              }}
+            >
+              <div>
+                <div
+                  className="sport-header-time"
+                  style={{
+                    fontFamily: '"Dela Gothic One", cursive',
+                    fontSize: 'clamp(20px, 2.5vw, 36px)',
+                    color: 'rgba(232,54,45,0.15)',
+                    letterSpacing: '0.05em',
+                    lineHeight: 1.12,
+                  }}
+                >
+                  {timeRange}
+                </div>
+                <p
+                  className="program-section-location"
+                  style={{
+                    fontFamily: '"Inter", sans-serif',
+                    fontSize: 15,
+                    color: '#666666',
+                    lineHeight: 1.6,
+                    marginTop: 8,
+                    marginBottom: 0,
+                  }}
+                >
+                  {location ?? (
+                    <>
+                      Экстрим-парк «УРАМ»
+                      <br />
+                      Кремлёвская набережная, 33
+                    </>
+                  )}
+                </p>
               </div>
-              <p
-                className="program-section-location"
-                style={{
-                  fontFamily: '"Inter", sans-serif',
-                  fontSize: 15,
-                  color: '#666666',
-                  lineHeight: 1.6,
-                  marginTop: 8,
-                  marginBottom: 0,
-                }}
-              >
-                {location ?? (
-                  <>
-                    Экстрим-парк «УРАМ»
-                    <br />
-                    Кремлёвская набережная, 33
-                  </>
-                )}
-              </p>
+              {headerLogo && (
+                <img
+                  src={headerLogo}
+                  alt={headerLogoAlt}
+                  className="program-header-logo"
+                  style={{
+                    height: 'clamp(48px, 6vw, 72px)',
+                    width: 'auto',
+                    flexShrink: 0,
+                    filter: 'brightness(0)',
+                    opacity: 0.25,
+                  }}
+                />
+              )}
             </div>
-            {headerLogo && (
-              <img
-                src={headerLogo}
-                alt={headerLogoAlt}
-                className="program-header-logo"
-                style={{
-                  height: 'clamp(48px, 6vw, 72px)',
-                  width: 'auto',
-                  flexShrink: 0,
-                  filter: 'brightness(0)',
-                  opacity: 0.25,
-                }}
-              />
-            )}
           </div>
         </div>
 
@@ -356,11 +363,11 @@ export default function ProgramSection({
                                     className="accordion-partner-badge"
                                     style={{ ...badgeStyle, textDecoration: 'none' }}
                                   >
-                                    {name}
+                                    {renderPartnerName(name)}
                                   </a>
                                 ) : (
                                   <div key={i} className="accordion-partner-badge" style={badgeStyle}>
-                                    {name}
+                                    {renderPartnerName(name)}
                                   </div>
                                 )
                               })}
