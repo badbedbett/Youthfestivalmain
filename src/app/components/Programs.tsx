@@ -51,7 +51,7 @@ const programs = [
   {
     id: 5,
     title: 'Образование',
-    time: '13:00 – 19:00',
+    time: '13:00 – 20:00',
     desc: 'Образовательные и просветительские лекции, мотивационные встречи.',
     color: '#BF00FF',
     img: programCardImg('education'),

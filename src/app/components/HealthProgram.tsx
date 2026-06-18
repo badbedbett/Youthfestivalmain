@@ -111,7 +111,7 @@ export default function HealthProgram() {
       id="health-program"
       title="ЗДОРОВЬЕ"
       titleClassName="gradient-text-full"
-      timeRange="10:00 – 19:00"
+      timeRange="12:00 – 19:00"
       activities={healthActivities}
     />
   )

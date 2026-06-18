@@ -21,7 +21,7 @@ export default function StageProgram() {
       id="stage-program"
       title="ГЛАВНАЯ СЦЕНА"
       titleClassName="gradient-text-full"
-      timeRange="10:00 – 19:00"
+      timeRange="13:00 – 22:00"
       activities={stageActivities}
     />
   )

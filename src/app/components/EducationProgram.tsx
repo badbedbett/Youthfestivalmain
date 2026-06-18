@@ -306,7 +306,7 @@ export default function EducationProgram() {
       id="education-program"
       title="ОБРАЗОВАНИЕ"
       titleClassName="gradient-text-full"
-      timeRange="10:00 – 19:00"
+      timeRange="13:00 – 20:00"
       activities={educationActivities}
       expandedMaxHeight={3200}
     />
