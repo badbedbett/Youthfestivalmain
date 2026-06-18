@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Mic } from 'lucide-react'
 import ProgramSection from './ProgramSection'
 
 const PLACE = 'Лекторий экстрим-парка УРАМ'
@@ -11,7 +12,48 @@ type Person = {
   name: string
   bio: string
   img?: string
-  label?: string
+}
+
+const avatarStyle = {
+  width: 64,
+  height: 64,
+  borderRadius: '50%',
+  border: '2px solid rgba(232,54,45,0.25)',
+  flexShrink: 0,
+  display: 'block',
+} as const
+
+function PersonAvatar({ person }: { person: Person }) {
+  if (person.img) {
+    return (
+      <img
+        src={person.img}
+        alt={person.name}
+        loading="lazy"
+        decoding="async"
+        style={{
+          ...avatarStyle,
+          objectFit: 'cover',
+          objectPosition: 'center 20%',
+        }}
+      />
+    )
+  }
+
+  return (
+    <div
+      style={{
+        ...avatarStyle,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'rgba(232,54,45,0.08)',
+      }}
+      aria-hidden
+    >
+      <Mic size={28} color="#E8362D" strokeWidth={2} />
+    </div>
+  )
 }
 
 function SpeakerBlock({ title, people }: { title: string; people: Person[] }) {
@@ -41,42 +83,8 @@ function SpeakerBlock({ title, people }: { title: string; people: Person[] }) {
               gap: 14,
             }}
           >
-            {person.img ? (
-              <img
-                src={person.img}
-                alt={person.name}
-                loading="lazy"
-                decoding="async"
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  objectPosition: 'center 20%',
-                  border: '2px solid rgba(232,54,45,0.25)',
-                  flexShrink: 0,
-                  display: 'block',
-                }}
-              />
-            ) : (
-              <div style={{ width: 64, flexShrink: 0 }} />
-            )}
+            <PersonAvatar person={person} />
             <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
-              {person.label && (
-                <div
-                  style={{
-                    fontFamily: '"Inter", sans-serif',
-                    fontSize: 10,
-                    fontWeight: 700,
-                    color: '#F18500',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    marginBottom: 4,
-                  }}
-                >
-                  {person.label}
-                </div>
-              )}
               <div
                 style={{
                   fontFamily: '"Dela Gothic One", cursive',
@@ -155,7 +163,6 @@ const educationActivities = [
               name: 'Анастасия Ивашкевич',
               bio: 'продюсер специальных проектов арт-резиденции РЕАКТОР, клинический психолог, лектор, диджей',
               img: eduImg('anastasia-ivashkevich.jpg'),
-              label: 'Модератор',
             },
           ],
         },
@@ -218,7 +225,6 @@ const educationActivities = [
               name: 'Мария Квад',
               bio: 'куратор и арт-менеджер',
               img: eduImg('maria-kvad.jpg'),
-              label: 'Модератор и спикер',
             },
           ],
         },
