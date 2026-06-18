@@ -2,9 +2,11 @@ import type { ReactNode } from 'react'
 
 const tatarLetterStyle = {
   fontFamily: '"Inter", sans-serif',
-  fontSize: '0.92em',
-  fontWeight: 700,
-  letterSpacing: '0.02em',
+  fontSize: '1em',
+  fontWeight: 900,
+  letterSpacing: '0.01em',
+  display: 'inline-block',
+  transform: 'translateY(0.02em)',
 } as const
 
 export function renderPartnerName(name: string): ReactNode {
