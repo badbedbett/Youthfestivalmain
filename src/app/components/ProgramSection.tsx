@@ -6,6 +6,7 @@ import { renderPartnerName } from '../utils/renderPartnerName'
 import {
   scheduleProgramSectionTitleSize,
 } from '../utils/measureProgramTitleFontSize'
+import { renderProgramSectionTitle } from '../utils/renderProgramSectionTitle'
 
 export type ProgramPartner = string | { name: string; url?: string }
 
@@ -151,7 +152,7 @@ export default function ProgramSection({
                   color: '#000000',
                 }}
               >
-                <span className={titleClassName}>{title}</span>
+                {renderProgramSectionTitle(title, titleClassName)}
               </h2>
             </div>
 

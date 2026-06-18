@@ -1,80 +1,66 @@
 const REFERENCE_TITLES = ['ИНТЕРАКТИВНЫЕ ПЛОЩАДКИ', 'ПАРТНЁРСКИЕ ПЛОЩАДКИ'] as const
 const LINE_HEIGHT = 1.12
-const MAX_LINES = 2
 const MIN_SIZE = 48
 const MAX_SIZE = 120
 const MOBILE_MIN_SIZE = 28
 const MOBILE_MAX_SIZE = 44
+const META_RESERVE = 260
+const TITLE_GAP = 48
+const CONTENT_MAX = 1280
 
-function countLines(el: HTMLElement, fontSize: number): number {
-  const lineHeightPx = fontSize * LINE_HEIGHT
-  if (lineHeightPx <= 0) return 1
-  return Math.max(1, Math.ceil(el.scrollHeight / lineHeightPx - 0.01))
+export function splitProgramTitle(title: string): { line1: string; line2: string | null } {
+  const spaceIndex = title.indexOf(' ')
+  if (spaceIndex === -1) {
+    return { line1: title, line2: null }
+  }
+
+  return {
+    line1: title.slice(0, spaceIndex),
+    line2: title.slice(spaceIndex + 1),
+  }
 }
 
-function titleFitsInLines(el: HTMLElement, size: number): boolean {
-  el.style.fontSize = `${size}px`
-  return countLines(el, size) <= MAX_LINES
-}
-
-function createMeasureElement(maxWidth: number, title: string): HTMLHeadingElement {
-  const el = document.createElement('h2')
-  el.className = 'section-display-title sport-header-title-text'
+function measureTextWidth(text: string, fontSize: number): number {
+  const el = document.createElement('span')
   el.style.cssText = `
     position: absolute;
-    visibility: hidden;
-    pointer-events: none;
     left: -9999px;
     top: 0;
+    visibility: hidden;
+    pointer-events: none;
     font-family: "Dela Gothic One", cursive;
+    font-size: ${fontSize}px;
     line-height: ${LINE_HEIGHT};
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: normal;
-    width: ${maxWidth}px;
-    margin: 0;
-    padding: 0;
     letter-spacing: 0;
-  `
-
-  const span = document.createElement('span')
-  span.className = 'gradient-text-warm'
-  span.style.cssText = `
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    line-height: ${LINE_HEIGHT};
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: normal;
+    white-space: nowrap;
     margin: 0;
     padding: 0;
   `
-  span.textContent = title
-  el.appendChild(span)
+  el.textContent = text
   document.body.appendChild(el)
-  return el
+  const width = el.getBoundingClientRect().width
+  document.body.removeChild(el)
+  return width
 }
 
-function measureTitleAtWidth(
-  maxWidth: number,
-  title: string,
+function measureTwoLineTitleSize(
+  line1: string,
+  line2: string,
+  columnWidth: number,
   minSize: number,
   maxSize: number,
 ): number {
-  const el = createMeasureElement(maxWidth, title)
-  const span = el.querySelector('span') as HTMLElement
-
   let low = minSize
   let high = maxSize
   let best = minSize
 
   while (low <= high) {
     const mid = Math.floor((low + high) / 2)
-    el.style.fontSize = `${mid}px`
-    span.style.fontSize = `${mid}px`
+    const fits =
+      measureTextWidth(line1, mid) <= columnWidth &&
+      measureTextWidth(line2, mid) <= columnWidth
 
-    if (titleFitsInLines(span, mid)) {
+    if (fits) {
       best = mid
       low = mid + 1
     } else {
@@ -82,41 +68,65 @@ function measureTitleAtWidth(
     }
   }
 
-  document.body.removeChild(el)
   return best
 }
 
 export function measureProgramTitleFontSize(
-  maxWidth: number,
+  columnWidth: number,
   minSize = MIN_SIZE,
   maxSize = MAX_SIZE,
 ): number {
-  return REFERENCE_TITLES.reduce(
-    (size, title) => Math.min(size, measureTitleAtWidth(maxWidth, title, minSize, maxSize)),
-    maxSize,
-  )
+  return REFERENCE_TITLES.reduce((size, title) => {
+    const { line1, line2 } = splitProgramTitle(title)
+    if (!line2) return size
+    return Math.min(size, measureTwoLineTitleSize(line1, line2, columnWidth, minSize, maxSize))
+  }, maxSize)
+}
+
+export function estimateProgramTitleColumnWidth(viewportWidth = window.innerWidth): number {
+  const sectionPad = Math.min(48, viewportWidth * 0.04) * 2
+
+  if (viewportWidth <= 768) {
+    return Math.max(280, viewportWidth - sectionPad)
+  }
+
+  const contentWidth = Math.min(CONTENT_MAX, viewportWidth - sectionPad)
+  return Math.max(320, contentWidth - META_RESERVE - TITLE_GAP)
 }
 
 export function getProgramTitleMaxWidth(bodyEl: HTMLElement): number {
-  const gap = 48
-  const metaReserve = 260
+  const titleWrap = bodyEl.querySelector('.sport-header-title') as HTMLElement | null
   const hasLogo = !!bodyEl.querySelector('.sport-header-logo-wrap')
 
   if (window.innerWidth <= 768) {
-    const titleWrap = bodyEl.querySelector('.sport-header-title') as HTMLElement | null
     return Math.max(280, titleWrap?.clientWidth ?? bodyEl.clientWidth)
   }
 
   if (hasLogo) {
-    return Math.max(320, bodyEl.clientWidth - metaReserve - gap)
+    return estimateProgramTitleColumnWidth()
   }
 
-  const titleWrap = bodyEl.querySelector('.sport-header-title') as HTMLElement | null
   if (titleWrap?.clientWidth) {
     return Math.max(320, titleWrap.clientWidth)
   }
 
-  return Math.max(320, bodyEl.clientWidth - metaReserve - gap)
+  return estimateProgramTitleColumnWidth()
+}
+
+function getSizeLimits(): { min: number; max: number; columnWidth: number } {
+  const isMobile = window.innerWidth <= 768
+  return {
+    min: isMobile ? MOBILE_MIN_SIZE : MIN_SIZE,
+    max: isMobile ? MOBILE_MAX_SIZE : MAX_SIZE,
+    columnWidth: estimateProgramTitleColumnWidth(),
+  }
+}
+
+export function initProgramSectionTitleSize(): void {
+  const { min, max, columnWidth } = getSizeLimits()
+  const size = measureProgramTitleFontSize(columnWidth, min, max)
+  document.documentElement.style.setProperty('--program-section-title-size', `${size}px`)
+  markProgramTitlesSized()
 }
 
 let pendingFrame = 0
@@ -133,6 +143,10 @@ async function ensureTitleFontLoaded(): Promise<void> {
   await document.fonts.ready
 }
 
+function markProgramTitlesSized(): void {
+  document.documentElement.classList.add('program-titles-sized')
+}
+
 export async function applyProgramSectionTitleSize(bodyEl: HTMLElement): Promise<void> {
   await ensureTitleFontLoaded()
 
@@ -144,9 +158,12 @@ export async function applyProgramSectionTitleSize(bodyEl: HTMLElement): Promise
     isMobile ? MOBILE_MAX_SIZE : MAX_SIZE,
   )
 
-  if (size === lastAppliedSize) return
-  lastAppliedSize = size
-  document.documentElement.style.setProperty('--program-section-title-size', `${size}px`)
+  if (size !== lastAppliedSize) {
+    lastAppliedSize = size
+    document.documentElement.style.setProperty('--program-section-title-size', `${size}px`)
+  }
+
+  markProgramTitlesSized()
 }
 
 export function scheduleProgramSectionTitleSize(bodyEl: HTMLElement): void {

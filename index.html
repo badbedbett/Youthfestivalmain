@@ -72,7 +72,20 @@
           }
         }
       </script>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+      <style>
+        html, body { height: 100%; margin: 0; }
+        #root { height: 100%; }
+        html:not(.program-titles-sized) .program-section .sport-header-title-text { opacity: 0; }
+      </style>
+      <script>
+        (function () {
+          var w = window.innerWidth;
+          var pad = Math.min(48, w * 0.04) * 2;
+          var col = w <= 768 ? Math.max(280, w - pad) : Math.max(320, Math.min(1280, w - pad) - 260 - 48);
+          var size = w <= 768 ? Math.min(44, Math.max(28, Math.floor(col / 10))) : Math.min(120, Math.max(48, Math.floor(col / 7.5)));
+          document.documentElement.style.setProperty('--program-section-title-size', size + 'px');
+        })();
+      </script>
     </head>
 
     <body>

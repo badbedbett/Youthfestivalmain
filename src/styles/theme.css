@@ -202,6 +202,16 @@
   -webkit-box-decoration-break: clone;
 }
 
+.program-section .sport-header-title .gradient-text-warm,
+.program-section .sport-header-title .gradient-text-full {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: 1.12;
+}
+
 .gradient-text-warm {
   background-image: linear-gradient(135deg, #E8362D 0%, #F18500 55%, #FFDF00 100%);
 }
