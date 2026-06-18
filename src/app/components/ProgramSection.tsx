@@ -283,7 +283,7 @@ export default function ProgramSection({
                     >
                       <div>
                         {hasDesc && (
-                          <p
+                          <div
                             className="accordion-desc-text"
                             style={{
                               fontFamily: '"Inter", sans-serif',
@@ -291,11 +291,11 @@ export default function ProgramSection({
                               color: '#333333',
                               lineHeight: 1.75,
                               margin: '0 0 16px',
-                              whiteSpace: typeof act.desc === 'string' ? 'pre-wrap' : 'pre-line',
+                              whiteSpace: typeof act.desc === 'string' ? 'pre-wrap' : 'normal',
                             }}
                           >
                             {typeof act.desc === 'string' ? linkifyText(act.desc) : act.desc}
-                          </p>
+                          </div>
                         )}
 
                         {act.tags.length > 0 && (
