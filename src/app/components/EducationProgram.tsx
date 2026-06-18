@@ -15,8 +15,8 @@ type Person = {
 }
 
 const avatarStyle = {
-  width: 64,
-  height: 64,
+  width: 48,
+  height: 48,
   borderRadius: '50%',
   border: '2px solid rgba(232,54,45,0.25)',
   flexShrink: 0,
@@ -51,7 +51,7 @@ function PersonAvatar({ person }: { person: Person }) {
       }}
       aria-hidden
     >
-      <Mic size={28} color="#E8362D" strokeWidth={2} />
+      <Mic size={20} color="#E8362D" strokeWidth={2} />
     </div>
   )
 }
