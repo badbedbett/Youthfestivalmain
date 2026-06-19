@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { HorseBackground } from './HorseBackground'
+import { preloadSpeakerImages } from '../utils/preloadImages'
 
 type Speaker = {
   name: string
@@ -18,7 +20,7 @@ const speakers: Speaker[] = [
     role: 'Артист, чьи треки давно стали частью российской хип-хоп- и поп-культуры',
     accent: '#FFDF00',
     featured: true,
-    img: '/images/speakers/lone-headliner.png',
+    img: '/images/speakers/lone-headliner.jpg',
     imgPosition: 'center 20%',
     time: '21:00',
     location: 'Главная сцена',
@@ -259,6 +261,7 @@ function SpeakerCard({ sp }: { sp: Speaker }) {
               alt={sp.name}
               loading={isFeatured ? 'eager' : 'lazy'}
               decoding="async"
+              fetchPriority={isFeatured ? 'high' : 'auto'}
               style={{
                 width: '100%',
                 height: '100%',
@@ -360,6 +363,10 @@ function SpeakerCard({ sp }: { sp: Speaker }) {
 }
 
 export default function Speakers() {
+  useEffect(() => {
+    preloadSpeakerImages()
+  }, [])
+
   return (
     <section
       id="speakers"

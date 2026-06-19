@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 import sharp from 'sharp'
 
 const root = path.resolve('public/images')
@@ -16,32 +17,80 @@ function walk(dir) {
   return entries
 }
 
-async function optimizeFile(file) {
-  const rel = path.relative(root, file)
-  const out = path.join(outRoot, rel)
-  fs.mkdirSync(path.dirname(out), { recursive: true })
+function relPosix(file) {
+  return path.relative(root, file).split(path.sep).join('/')
+}
 
+async function optimizeFile(file) {
+  const rel = relPosix(file)
   const ext = path.extname(file).toLowerCase()
   const before = fs.statSync(file).size
 
   if (ext === '.jpg' || ext === '.jpeg') {
-    const isSpeaker = rel.startsWith(`speakers${path.sep}`)
+    const isSpeaker = rel.startsWith('speakers/')
+    const out = path.join(outRoot, rel.replace(/\.jpe?g$/i, '.jpg'))
+    fs.mkdirSync(path.dirname(out), { recursive: true })
+
     await sharp(file)
       .rotate()
-      .resize(isSpeaker ? 320 : 1280, isSpeaker ? 320 : 1280, {
+      .resize(isSpeaker ? 256 : 1280, isSpeaker ? 256 : 1280, {
         fit: 'inside',
         withoutEnlargement: true,
       })
-      .jpeg({ quality: 82, mozjpeg: true })
+      .jpeg({ quality: 78, mozjpeg: true })
       .toFile(out)
-  } else if (ext === '.png') {
-    await sharp(file)
-      .png({ compressionLevel: 9, palette: true, quality: 80, effort: 10 })
-      .toFile(out)
-  } else {
+
+    const after = fs.statSync(out).size
+    return { rel, before, after }
+  }
+
+  if (ext !== '.png') {
+    const out = path.join(outRoot, rel)
+    fs.mkdirSync(path.dirname(out), { recursive: true })
     fs.copyFileSync(file, out)
     return null
   }
+
+  const isSpeakerPhoto =
+    rel.startsWith('speakers/') &&
+    !rel.includes('programs') &&
+    rel !== 'speakers/lone-headliner.png'
+  const isLoneHeadliner = rel === 'speakers/lone-headliner.png' || rel === 'speakers/lone-headliner.jpg'
+  const isStage = rel.startsWith('stage/')
+  const isProgramCard = rel.startsWith('programs/')
+
+  if (isLoneHeadliner && ext === '.png') {
+    const out = path.join(outRoot, 'speakers/lone-headliner.jpg')
+    fs.mkdirSync(path.dirname(out), { recursive: true })
+    await sharp(file)
+      .rotate()
+      .resize(512, 512, { fit: 'inside', withoutEnlargement: true })
+      .jpeg({ quality: 82, mozjpeg: true })
+      .toFile(out)
+
+    const after = fs.statSync(out).size
+    return { rel: 'speakers/lone-headliner.jpg', before, after }
+  }
+
+  const out = path.join(outRoot, rel)
+  fs.mkdirSync(path.dirname(out), { recursive: true })
+
+  let pipeline = sharp(file).rotate()
+
+  if (isStage) {
+    pipeline = pipeline.resize(1200, null, { withoutEnlargement: true })
+  } else if (isProgramCard) {
+    pipeline = pipeline.resize(640, 640, { fit: 'inside', withoutEnlargement: true })
+  }
+
+  await pipeline
+    .png({
+      compressionLevel: 9,
+      palette: true,
+      quality: isStage ? 85 : 80,
+      effort: 10,
+    })
+    .toFile(out)
 
   const after = fs.statSync(out).size
   return { rel, before, after }
@@ -57,7 +106,12 @@ function swapDirs() {
   } catch {
     console.log('\nCould not rename folders (files may be locked). Copy manually:')
     console.log(`  robocopy "${outRoot}" "${root}" /E /IS /IT`)
-    process.exitCode = 0
+    try {
+      execSync(`robocopy "${outRoot}" "${root}" /E /IS /IT /NFL /NDL /NJH /NJS`, { stdio: 'inherit' })
+      fs.rmSync(outRoot, { recursive: true, force: true })
+    } catch {
+      process.exitCode = 0
+    }
   }
 }
 
@@ -75,11 +129,11 @@ for (const file of files) {
   afterTotal += result.after
   saved += result.before - result.after
   console.log(
-    `${result.rel}: ${(result.before / 1024).toFixed(0)} KB -> ${(result.after / 1024).toFixed(0)} KB`
+    `${result.rel}: ${(result.before / 1024).toFixed(0)} KB -> ${(result.after / 1024).toFixed(0)} KB`,
   )
 }
 
 swapDirs()
 console.log(
-  `\nDone. ${(beforeTotal / 1024 / 1024).toFixed(1)} MB -> ${(afterTotal / 1024 / 1024).toFixed(1)} MB (saved ${(saved / 1024 / 1024).toFixed(1)} MB)`
+  `\nDone. ${(beforeTotal / 1024 / 1024).toFixed(1)} MB -> ${(afterTotal / 1024 / 1024).toFixed(1)} MB (saved ${(saved / 1024 / 1024).toFixed(1)} MB)`,
 )

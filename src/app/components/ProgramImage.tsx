@@ -13,12 +13,6 @@ export default function ProgramImage({ src, alt, className, style, priority = fa
 
   useEffect(() => {
     setLoaded(false)
-    const img = new Image()
-    img.decoding = 'async'
-    img.onload = () => setLoaded(true)
-    img.onerror = () => setLoaded(true)
-    img.src = src
-    if (img.complete) setLoaded(true)
   }, [src])
 
   return (
@@ -37,7 +31,7 @@ export default function ProgramImage({ src, alt, className, style, priority = fa
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
-        fetchPriority={priority ? 'high' : 'low'}
+        fetchPriority={priority ? 'high' : 'auto'}
         onLoad={() => setLoaded(true)}
         style={{
           width: '100%',
@@ -45,7 +39,7 @@ export default function ProgramImage({ src, alt, className, style, priority = fa
           objectFit: 'cover',
           display: 'block',
           opacity: loaded ? 1 : 0,
-          transition: 'opacity 0.25s ease',
+          transition: 'opacity 0.2s ease',
         }}
       />
     </div>

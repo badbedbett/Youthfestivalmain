@@ -1,16 +1,25 @@
 import { useEffect } from 'react'
-import { preloadAllProgramImages } from '../utils/preloadImages'
+import {
+  preloadAllProgramImages,
+  preloadPriorityImages,
+  preloadSpeakerImages,
+} from '../utils/preloadImages'
 
 export default function ProgramImagesPreloader() {
   useEffect(() => {
-    const run = () => preloadAllProgramImages()
+    preloadPriorityImages()
+
+    const runSecondary = () => {
+      preloadSpeakerImages()
+      preloadAllProgramImages()
+    }
 
     if ('requestIdleCallback' in window) {
-      const id = window.requestIdleCallback(run, { timeout: 2500 })
+      const id = window.requestIdleCallback(runSecondary, { timeout: 1200 })
       return () => window.cancelIdleCallback(id)
     }
 
-    const timer = window.setTimeout(run, 800)
+    const timer = window.setTimeout(runSecondary, 300)
     return () => window.clearTimeout(timer)
   }, [])
 

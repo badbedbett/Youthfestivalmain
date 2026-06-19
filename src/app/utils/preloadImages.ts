@@ -45,13 +45,44 @@ const DETAIL_IMAGES: Array<[folder: string, name: string]> = [
   ['health', 'doctor-dates'],
 ]
 
+export const SPEAKER_IMAGE_URLS = [
+  '/images/speakers/lone-headliner.jpg',
+  '/images/speakers/yasmin-buali.jpg',
+  '/images/speakers/lera-veiv.jpg',
+  '/images/speakers/dmitry-yakovlev.jpg',
+  '/images/speakers/liza-livada.jpg',
+  '/images/speakers/maria-kvad.jpg',
+  '/images/speakers/tima-fermer.jpg',
+  '/images/speakers/sergey-mezentsev.jpg',
+  '/images/speakers/vitaly-zuev.jpg',
+  '/images/speakers/artem-anisimov.jpg',
+  '/images/speakers/grigory-anfilofeev.jpg',
+  '/images/speakers/dmitry-dvoynishnikov.jpg',
+  '/images/speakers/emin-aliev.jpg',
+  '/images/speakers/nikita-sekh.jpg',
+  '/images/speakers/pavel-elsukov.jpg',
+  '/images/speakers/mikhail-okatev.jpg',
+  '/images/speakers/matvey-sharygin.jpg',
+  '/images/speakers/andrey-skvortsov.jpg',
+  '/images/speakers/artem-kuznetsov.jpg',
+] as const
+
+export const PRIORITY_IMAGE_URLS = [
+  '/images/speakers/lone-headliner.jpg',
+  ...PROGRAM_CARD_NAMES.slice(0, 4).map(name => `/images/programs/${name}.png`),
+] as const
+
 export const ALL_PROGRAM_IMAGE_URLS = [
   ...PROGRAM_CARD_NAMES.map(name => `/images/programs/${name}.png`),
   ...DETAIL_IMAGES.map(([folder, name]) => programImg(folder, name)),
+  '/images/stage/headliner.png',
+  '/images/sport/roliki.jpg',
+  '/images/sport/bmx-street.jpg',
+  '/images/sport/skate.jpg',
 ]
 
 export const PROGRAM_CARD_IMAGE_URLS = PROGRAM_CARD_NAMES.map(
-  name => `/images/programs/${name}.png`
+  name => `/images/programs/${name}.png`,
 )
 
 const preloaded = new Set<string>()
@@ -66,6 +97,20 @@ export function preloadImages(urls: Iterable<string | null | undefined>) {
   }
 }
 
+export function preloadPriorityImages() {
+  preloadImages(PRIORITY_IMAGE_URLS)
+}
+
+export function preloadSpeakerImages() {
+  preloadImages(SPEAKER_IMAGE_URLS)
+}
+
 export function preloadAllProgramImages() {
-  preloadImages(PROGRAM_CARD_IMAGE_URLS)
+  preloadImages(ALL_PROGRAM_IMAGE_URLS)
+}
+
+export function preloadAllSiteImages() {
+  preloadPriorityImages()
+  preloadSpeakerImages()
+  preloadAllProgramImages()
 }
