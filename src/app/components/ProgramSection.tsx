@@ -17,6 +17,7 @@ export type ProgramActivity = {
   place: string
   desc: string | ReactNode
   img: string | null
+  imgLayout?: 'side' | 'below'
   partners: ProgramPartner[] | null
   tags: string[]
 }
@@ -213,6 +214,8 @@ export default function ProgramSection({
           {activities.map((act) => {
             const isOpen = openId === act.id
             const hasDesc = act.desc !== '' && act.desc !== null && act.desc !== undefined
+            const imgBelow = act.imgLayout === 'below' && !!act.img
+            const hasSideImage = !!act.img && !imgBelow
 
             return (
               <div
@@ -303,7 +306,7 @@ export default function ProgramSection({
                     <div
                       style={{
                         display: 'grid',
-                        gridTemplateColumns: act.img ? '1fr 260px' : '1fr',
+                        gridTemplateColumns: hasSideImage ? '1fr 260px' : '1fr',
                         gap: 24,
                         alignItems: 'start',
                       }}
@@ -397,12 +400,18 @@ export default function ProgramSection({
                         )}
                       </div>
 
-                      {act.img && (
+                      {hasSideImage && act.img && (
                         <div className="accordion-image" style={{ borderRadius: 10, overflow: 'hidden', height: 160 }}>
                           <ProgramImage src={act.img} alt={act.title} />
                         </div>
                       )}
                     </div>
+
+                    {imgBelow && act.img && (
+                      <div className="accordion-image-full">
+                        <img src={act.img} alt={act.title} loading="lazy" decoding="async" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -142,6 +142,18 @@ html.program-titles-sized .program-section .sport-header-title-text {
   white-space: nowrap;
 }
 
+.accordion-image-full {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.accordion-image-full img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
 @media (max-width: 768px) {
   .accordion-btn {
     grid-template-columns: 1fr auto;

@@ -12,6 +12,7 @@ const stageActivities = [
 
 Хедлайнером Дня молодёжи станет L'One, выступление в 21:00.`,
     img: '/images/stage/headliner.png',
+    imgLayout: 'below' as const,
     partners: null,
     tags: [],
   },
