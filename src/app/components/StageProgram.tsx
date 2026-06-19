@@ -8,8 +8,10 @@ const stageActivities = [
     title: 'Выступление молодых локальных артистов на двух языках',
     time: '13:00 – 22:00',
     place: PLACE,
-    desc: '',
-    img: null,
+    desc: `Список выступающих артистов концертной программы совсем скоро дополнится!
+
+Хедлайнером Дня молодёжи станет L'One, выступление в 21:00.`,
+    img: '/images/stage/headliner.png',
     partners: null,
     tags: [],
   },
