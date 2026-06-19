@@ -22,7 +22,7 @@ const speakers: Speaker[] = [
     featured: true,
     img: '/images/speakers/lone-headliner.jpg',
     imgPosition: 'center 20%',
-    time: '21:00',
+    time: '10:00 – 22:00',
     location: 'Главная сцена',
     lecture: 'Хедлайнер Дня молодёжи в Казани!',
   },

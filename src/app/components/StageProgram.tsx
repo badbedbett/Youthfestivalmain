@@ -10,7 +10,7 @@ const stageActivities = [
     place: PLACE,
     desc: `Список выступающих артистов концертной программы совсем скоро дополнится!
 
-Хедлайнером Дня молодёжи станет L'One, выступление в 21:00.`,
+Хедлайнером Дня молодёжи станет L'One.`,
     img: '/images/stage/headliner.png',
     imgLayout: 'below' as const,
     partners: null,
