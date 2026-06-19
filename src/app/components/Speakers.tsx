@@ -1,6 +1,29 @@
 import { HorseBackground } from './HorseBackground'
 
-const speakers = [
+type Speaker = {
+  name: string
+  role: string
+  accent: string | null
+  img: string
+  imgPosition?: string
+  time: string
+  location: string
+  lecture: string
+  featured?: boolean
+}
+
+const speakers: Speaker[] = [
+  {
+    name: "L'One",
+    role: 'Артист, чьи треки давно стали частью российской хип-хоп- и поп-культуры',
+    accent: '#FFDF00',
+    featured: true,
+    img: '/images/speakers/lone-headliner.png',
+    imgPosition: 'center 20%',
+    time: '21:00',
+    location: 'Главная сцена',
+    lecture: 'Хедлайнер Дня молодёжи в Казани!',
+  },
   {
     name: 'Ясмин Буали',
     role: 'Врач-гинеколог и медицинский блогер',
@@ -183,6 +206,158 @@ const speakers = [
   },
 ]
 
+function SpeakerCard({ sp }: { sp: Speaker }) {
+  const isFeatured = sp.featured === true
+  const isAccented = sp.accent !== null
+  const isDark = sp.accent === '#FFDF00'
+  const textColor = isAccented ? (isDark ? '#000000' : '#FFFFFF') : '#FFFFFF'
+  const subColor = isAccented ? (isDark ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.75)') : 'rgba(255,255,255,0.65)'
+  const backBg = isAccented ? sp.accent! : 'rgba(255,255,255,0.12)'
+  const backIsDark = sp.accent === '#FFDF00'
+  const backText = isAccented ? (backIsDark ? '#000000' : '#FFFFFF') : '#FFFFFF'
+  const backSub = isAccented ? (backIsDark ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.75)') : 'rgba(255,255,255,0.65)'
+  const backDivider = isAccented ? (backIsDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.4)') : 'rgba(255,255,255,0.3)'
+  const avatarSize = isFeatured ? 88 : 52
+
+  return (
+    <div
+      className={`speaker-flip-container${isFeatured ? ' speaker-featured' : ''}`}
+      style={{ perspective: '800px', cursor: 'default' }}
+    >
+      <div className="speaker-flip-inner">
+        <div
+          className="speaker-face speaker-front"
+          style={{
+            background: isFeatured
+              ? 'linear-gradient(145deg, #FFFFFF 0%, #FFDF00 100%)'
+              : isAccented
+                ? sp.accent!
+                : 'rgba(255,255,255,0.12)',
+            border: isFeatured
+              ? '2px solid rgba(255,255,255,0.85)'
+              : isAccented
+                ? 'none'
+                : '1px solid rgba(255,255,255,0.18)',
+            boxShadow: isFeatured ? '0 16px 40px rgba(0,0,0,0.18)' : undefined,
+          }}
+        >
+          {isFeatured && (
+            <span className="speaker-featured-badge">Хедлайнер</span>
+          )}
+          <div
+            style={{
+              width: avatarSize,
+              height: avatarSize,
+              borderRadius: '50%',
+              overflow: 'hidden',
+              flexShrink: 0,
+              border: `2px solid ${isFeatured ? 'rgba(0,0,0,0.12)' : isAccented ? (isDark ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.35)') : 'rgba(255,255,255,0.25)'}`,
+            }}
+          >
+            <img
+              src={sp.img}
+              alt={sp.name}
+              loading={isFeatured ? 'eager' : 'lazy'}
+              decoding="async"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: sp.imgPosition ?? 'center 20%',
+                display: 'block',
+              }}
+            />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {isFeatured && (
+              <div className="speaker-featured-eyebrow">Главная сцена</div>
+            )}
+            <div
+              className={isFeatured ? 'speaker-featured-name' : undefined}
+              style={{
+                fontFamily: '"Dela Gothic One", cursive',
+                fontSize: isFeatured ? undefined : 'clamp(11px, 1vw, 13px)',
+                color: textColor,
+                letterSpacing: '-0.01em',
+                lineHeight: 1.2,
+                marginBottom: 3,
+              }}
+            >
+              {sp.name}
+            </div>
+            <div
+              className={`speaker-role${isFeatured ? ' speaker-featured-role' : ''}`}
+              style={{
+                fontFamily: '"Inter", sans-serif',
+                fontSize: isFeatured ? undefined : 'clamp(9px, 0.75vw, 11px)',
+                color: subColor,
+                lineHeight: 1.35,
+              }}
+            >
+              {sp.role}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="speaker-face speaker-back"
+          style={{
+            background: backBg,
+            border: isAccented ? 'none' : '1px solid rgba(255,255,255,0.18)',
+          }}
+        >
+          <div
+            className={isFeatured ? 'speaker-featured-time' : undefined}
+            style={{
+              fontFamily: '"Dela Gothic One", cursive',
+              fontSize: isFeatured ? undefined : 'clamp(16px, 1.4vw, 20px)',
+              color: backText,
+              letterSpacing: '-0.01em',
+              lineHeight: 1,
+              marginBottom: 6,
+            }}
+          >
+            {sp.time}
+          </div>
+          <div
+            className={isFeatured ? 'speaker-featured-location' : undefined}
+            style={{
+              fontFamily: '"Inter", sans-serif',
+              fontSize: isFeatured ? undefined : 'clamp(9px, 0.8vw, 11px)',
+              color: backSub,
+              lineHeight: 1.3,
+              marginBottom: 8,
+            }}
+          >
+            {sp.location}
+          </div>
+          <div
+            style={{
+              width: isFeatured ? 40 : 24,
+              height: 2,
+              background: backDivider,
+              borderRadius: 1,
+              marginBottom: 8,
+            }}
+          />
+          <div
+            className={isFeatured ? 'speaker-featured-lecture' : undefined}
+            style={{
+              fontFamily: '"Inter", sans-serif',
+              fontSize: isFeatured ? undefined : 'clamp(9px, 0.8vw, 11px)',
+              color: backText,
+              lineHeight: 1.45,
+              fontStyle: isFeatured ? 'normal' : 'italic',
+              fontWeight: isFeatured ? 600 : 400,
+            }}
+          >
+            {sp.lecture}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Speakers() {
   return (
@@ -211,7 +386,6 @@ export default function Speakers() {
       </div>
 
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        {/* Header */}
         <div style={{ marginBottom: 52 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
             <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.5)' }} />
@@ -245,151 +419,69 @@ export default function Speakers() {
           </h2>
         </div>
 
-        {/* Grid */}
         <div
           style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10 }}
           className="speakers-grid"
         >
-          {speakers.map((sp, idx) => {
-            const isAccented = sp.accent !== null
-            const isDark = sp.accent === '#FFDF00'
-            const textColor = isAccented ? (isDark ? '#000000' : '#FFFFFF') : '#FFFFFF'
-            const subColor = isAccented ? (isDark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.75)') : 'rgba(255,255,255,0.65)'
-            const accentColor = sp.accent ?? '#FFDF00'
-            const backBg = isAccented ? sp.accent! : 'rgba(255,255,255,0.12)'
-            const backIsDark = sp.accent === '#FFDF00'
-            const backText = isAccented ? (backIsDark ? '#000000' : '#FFFFFF') : '#FFFFFF'
-            const backSub = isAccented ? (backIsDark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.75)') : 'rgba(255,255,255,0.65)'
-            const backDivider = isAccented ? (backIsDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.4)') : 'rgba(255,255,255,0.3)'
-
-            return (
-              <div
-                key={idx}
-                className="speaker-flip-container"
-                style={{ perspective: '800px', cursor: 'default' }}
-              >
-                <div className="speaker-flip-inner">
-                  {/* FRONT */}
-                  <div
-                    className="speaker-face speaker-front"
-                    style={{
-                      background: isAccented ? sp.accent! : 'rgba(255,255,255,0.12)',
-                      border: isAccented ? 'none' : '1px solid rgba(255,255,255,0.18)',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 52,
-                        height: 52,
-                        borderRadius: '50%',
-                        overflow: 'hidden',
-                        flexShrink: 0,
-                        border: `2px solid ${isAccented ? (isDark ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.35)') : 'rgba(255,255,255,0.25)'}`,
-                      }}
-                    >
-                      <img
-                        src={sp.img}
-                        alt={sp.name}
-                        loading="lazy"
-                        decoding="async"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          objectPosition: sp.imgPosition ?? 'center 20%',
-                          display: 'block',
-                        }}
-                      />
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        style={{
-                          fontFamily: '"Dela Gothic One", cursive',
-                          fontSize: 'clamp(11px, 1vw, 13px)',
-                          color: textColor,
-                          letterSpacing: '-0.01em',
-                          lineHeight: 1.2,
-                          marginBottom: 3,
-                        }}
-                      >
-                        {sp.name}
-                      </div>
-                      <div
-                        className="speaker-role"
-                        style={{
-                          fontFamily: '"Inter", sans-serif',
-                          fontSize: 'clamp(9px, 0.75vw, 11px)',
-                          color: subColor,
-                          lineHeight: 1.35,
-                        }}
-                      >
-                        {sp.role}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* BACK */}
-                  <div
-                    className="speaker-face speaker-back"
-                    style={{
-                      background: backBg,
-                      border: isAccented ? 'none' : '1px solid rgba(255,255,255,0.18)',
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: '"Dela Gothic One", cursive',
-                        fontSize: 'clamp(16px, 1.4vw, 20px)',
-                        color: backText,
-                        letterSpacing: '-0.01em',
-                        lineHeight: 1,
-                        marginBottom: 6,
-                      }}
-                    >
-                      {sp.time}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: '"Inter", sans-serif',
-                        fontSize: 'clamp(9px, 0.8vw, 11px)',
-                        color: backSub,
-                        lineHeight: 1.3,
-                        marginBottom: 8,
-                      }}
-                    >
-                      {sp.location}
-                    </div>
-                    <div
-                      style={{
-                        width: 24,
-                        height: 2,
-                        background: backDivider,
-                        borderRadius: 1,
-                        marginBottom: 8,
-                      }}
-                    />
-                    <div
-                      style={{
-                        fontFamily: '"Inter", sans-serif',
-                        fontSize: 'clamp(9px, 0.8vw, 11px)',
-                        color: backText,
-                        lineHeight: 1.45,
-                        fontStyle: 'italic',
-                      }}
-                    >
-                      {sp.lecture}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          {speakers.map((sp) => (
+            <SpeakerCard key={sp.name} sp={sp} />
+          ))}
         </div>
       </div>
 
       <style>{`
         .speaker-flip-container {
           height: 200px;
+        }
+        .speaker-featured {
+          grid-column: span 2;
+          grid-row: span 2;
+          min-height: calc(200px * 2 + 10px);
+          height: auto;
+        }
+        .speaker-featured .speaker-front {
+          gap: 14px;
+          padding: 20px 18px;
+        }
+        .speaker-featured-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          font-family: "Inter", sans-serif;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #000000;
+          background: rgba(255,255,255,0.72);
+          border-radius: 999px;
+          padding: 5px 10px;
+        }
+        .speaker-featured-eyebrow {
+          font-family: "Inter", sans-serif;
+          font-size: clamp(10px, 0.9vw, 12px);
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(0,0,0,0.55);
+          margin-bottom: 6px;
+        }
+        .speaker-featured-name {
+          font-size: clamp(22px, 2.4vw, 34px);
+          margin-bottom: 8px;
+        }
+        .speaker-featured-role {
+          font-size: clamp(12px, 1.1vw, 15px);
+          line-height: 1.45;
+        }
+        .speaker-featured-time {
+          font-size: clamp(28px, 2.8vw, 40px);
+        }
+        .speaker-featured-location {
+          font-size: clamp(12px, 1.1vw, 15px);
+        }
+        .speaker-featured-lecture {
+          font-size: clamp(12px, 1.1vw, 15px);
         }
         .speaker-flip-inner {
           position: relative;
@@ -428,9 +520,24 @@ export default function Speakers() {
         }
         @media (max-width: 700px) {
           .speakers-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .speaker-featured {
+            grid-column: span 2;
+            grid-row: span 2;
+          }
         }
         @media (max-width: 480px) {
           .speakers-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .speaker-featured {
+            grid-column: span 2;
+            grid-row: span 2;
+            min-height: calc(180px * 2 + 10px);
+          }
+          .speaker-flip-container {
+            height: 180px;
+          }
+          .speaker-featured-name {
+            font-size: clamp(20px, 7vw, 28px);
+          }
         }
       `}</style>
     </section>
