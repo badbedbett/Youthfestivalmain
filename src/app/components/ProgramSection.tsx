@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import ProgramImage from './ProgramImage'
 import { preloadImages } from '../utils/preloadImages'
-import { linkifyText } from '../utils/linkifyText'
+import { renderProgramDescription } from '../utils/renderProgramDescription'
+import { parseProgramSchedule } from '../utils/parseProgramSchedule'
 import { renderPartnerName } from '../utils/renderPartnerName'
 import {
   scheduleProgramSectionTitleSize,
@@ -216,6 +217,8 @@ export default function ProgramSection({
             const hasDesc = act.desc !== '' && act.desc !== null && act.desc !== undefined
             const imgBelow = act.imgLayout === 'below' && !!act.img
             const hasSideImage = !!act.img && !imgBelow
+            const isScheduleDesc =
+              typeof act.desc === 'string' && parseProgramSchedule(act.desc) !== null
 
             return (
               <div
@@ -315,17 +318,18 @@ export default function ProgramSection({
                       <div>
                         {hasDesc && (
                           <div
-                            className="accordion-desc-text"
+                            className={`accordion-desc-text${isScheduleDesc ? ' accordion-desc-text--schedule' : ''}`}
                             style={{
                               fontFamily: '"Inter", sans-serif',
                               fontSize: 15,
                               color: '#333333',
                               lineHeight: 1.75,
                               margin: '0 0 16px',
-                              whiteSpace: typeof act.desc === 'string' ? 'pre-wrap' : 'normal',
                             }}
                           >
-                            {typeof act.desc === 'string' ? linkifyText(act.desc) : act.desc}
+                            {typeof act.desc === 'string'
+                              ? renderProgramDescription(act.desc)
+                              : act.desc}
                           </div>
                         )}
 

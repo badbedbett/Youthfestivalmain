@@ -138,6 +138,63 @@ html.program-titles-sized .program-section .sport-header-title-text {
   align-items: center;
 }
 
+.accordion-desc-text:not(.accordion-desc-text--schedule) {
+  white-space: pre-wrap;
+}
+
+.program-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.program-schedule-intro {
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333333;
+}
+
+.program-schedule-item {
+  display: grid;
+  grid-template-columns: minmax(84px, auto) 1fr;
+  gap: 4px 16px;
+  padding: 12px 0 12px 14px;
+  border-left: 3px solid rgba(241, 133, 0, 0.45);
+}
+
+.program-schedule-time {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 13px;
+  color: #E8362D;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.program-schedule-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111111;
+  line-height: 1.45;
+}
+
+.program-schedule-body {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.7;
+  margin-top: 6px;
+  white-space: pre-wrap;
+}
+
+.program-schedule-body--solo {
+  margin-top: 0;
+  color: #333333;
+  font-size: 15px;
+}
+
 .accordion-time {
   white-space: nowrap;
 }
@@ -194,6 +251,16 @@ html.program-titles-sized .program-section .sport-header-title-text {
 
   .accordion-body {
     padding: 0 18px 20px !important;
+  }
+
+  .program-schedule-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-left: 12px;
+  }
+
+  .program-schedule-time {
+    font-size: 12px;
   }
 }
 
