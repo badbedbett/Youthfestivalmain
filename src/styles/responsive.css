@@ -142,6 +142,10 @@ html.program-titles-sized .program-section .sport-header-title-text {
   white-space: pre-wrap;
 }
 
+.accordion-desc-text--schedule {
+  white-space: normal;
+}
+
 .program-schedule {
   display: flex;
   flex-direction: column;
@@ -166,7 +170,8 @@ html.program-titles-sized .program-section .sport-header-title-text {
 .program-schedule-time {
   font-family: "Dela Gothic One", cursive;
   font-size: 13px;
-  color: #E8362D;
+  font-weight: 400;
+  color: #E8362D !important;
   letter-spacing: 0;
   line-height: 1.45;
 }
@@ -175,7 +180,7 @@ html.program-titles-sized .program-section .sport-header-title-text {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 15px;
-  color: #111111;
+  color: #111111 !important;
   line-height: 1.45;
 }
 

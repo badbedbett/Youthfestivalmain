@@ -20,7 +20,7 @@ const TIME_WITH_DASH_TITLE = new RegExp(
 const TIME_WITH_SPACE_TITLE = new RegExp(`^(${TIME_PART})\\s+(.+)$`)
 
 const GENERAL_OUTRO_START =
-  /^(Здесь вы|Для участия|Подробности и правила регистрации|Регистрация(\s+по ссылке|\s+для|\s*:\s*https?))/i
+  /^(Здесь вы|Для участия необходимо|Подробности и правила регистрации)/i
 
 function isTimeLine(line: string): boolean {
   return /^\d{1,2}:\d{2}/.test(line.trim())
