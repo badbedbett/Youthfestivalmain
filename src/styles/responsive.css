@@ -167,9 +167,8 @@ html.program-titles-sized .program-section .sport-header-title-text {
   font-family: "Dela Gothic One", cursive;
   font-size: 13px;
   color: #E8362D;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   line-height: 1.45;
-  font-variant-numeric: tabular-nums;
 }
 
 .program-schedule-title {
