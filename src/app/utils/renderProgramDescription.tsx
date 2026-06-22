@@ -14,18 +14,19 @@ export function renderProgramDescription(desc: string): ReactNode {
       {schedule.items.map((item, index) => (
         <div key={index} className="program-schedule-item">
           <span className="program-schedule-time">{item.time}</span>
-          <div className="program-schedule-content">
-            {item.title && <div className="program-schedule-title">{item.title}</div>}
-            {item.body && (
-              <div
-                className={`program-schedule-body${item.title ? '' : ' program-schedule-body--solo'}`}
-              >
-                {linkifyText(item.body)}
-              </div>
-            )}
-          </div>
+          {item.title && <div className="program-schedule-title">{item.title}</div>}
+          {item.body && (
+            <div
+              className={`program-schedule-body${item.title ? '' : ' program-schedule-body--solo'}`}
+            >
+              {linkifyText(item.body)}
+            </div>
+          )}
         </div>
       ))}
+      {schedule.outro && (
+        <p className="program-schedule-outro">{linkifyText(schedule.outro)}</p>
+      )}
     </div>
   )
 }

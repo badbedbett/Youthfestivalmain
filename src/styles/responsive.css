@@ -156,9 +156,9 @@ html.program-titles-sized .program-section .sport-header-title-text {
 }
 
 .program-schedule-item {
-  display: grid;
-  grid-template-columns: minmax(84px, auto) 1fr;
-  gap: 4px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 12px 0 12px 14px;
   border-left: 3px solid rgba(241, 133, 0, 0.45);
 }
@@ -184,7 +184,7 @@ html.program-titles-sized .program-section .sport-header-title-text {
   font-size: 14px;
   color: #555555;
   line-height: 1.7;
-  margin-top: 6px;
+  margin-top: 2px;
   white-space: pre-wrap;
 }
 
@@ -192,6 +192,14 @@ html.program-titles-sized .program-section .sport-header-title-text {
   margin-top: 0;
   color: #333333;
   font-size: 15px;
+}
+
+.program-schedule-outro {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333333;
+  white-space: pre-wrap;
 }
 
 .accordion-time {
@@ -250,12 +258,6 @@ html.program-titles-sized .program-section .sport-header-title-text {
 
   .accordion-body {
     padding: 0 18px 20px !important;
-  }
-
-  .program-schedule-item {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding-left: 12px;
   }
 
   .program-schedule-time {
