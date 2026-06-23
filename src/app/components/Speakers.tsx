@@ -452,7 +452,7 @@ function SpeakerCard({ sp }: { sp: Speaker }) {
               className={`speaker-role${isFeatured ? ' speaker-featured-role' : ''}`}
               style={{
                 fontFamily: '"Inter", sans-serif',
-                fontSize: isFeatured ? undefined : 'clamp(9px, 0.75vw, 11px)',
+                fontSize: isFeatured ? undefined : 'clamp(8px, 0.7vw, 10px)',
                 color: subColor,
                 lineHeight: 1.35,
               }}
@@ -598,12 +598,12 @@ export default function Speakers() {
 
       <style>{`
         .speaker-flip-container {
-          height: 200px;
+          height: 320px;
         }
         .speaker-featured {
           grid-column: span 2;
           grid-row: span 2;
-          min-height: calc(200px * 2 + 10px);
+          min-height: calc(320px * 2 + 10px);
           height: auto;
         }
         .speaker-featured .speaker-front {
@@ -697,10 +697,7 @@ export default function Speakers() {
           .speaker-featured {
             grid-column: span 2;
             grid-row: span 2;
-            min-height: calc(180px * 2 + 10px);
-          }
-          .speaker-flip-container {
-            height: 180px;
+            min-height: calc(320px * 2 + 10px);
           }
           .speaker-featured-name {
             font-size: clamp(20px, 7vw, 28px);
