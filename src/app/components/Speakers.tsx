@@ -206,6 +206,36 @@ const speakers: Speaker[] = [
     location: 'Стрит-плаза',
     lecture: 'Судья соревнований',
   },
+  {
+    name: 'Артём Агарков',
+    role: 'Чемпион России по BMX в дисциплине стрит, призёр Чемпионата России по BMX в дисциплине парк',
+    accent: null,
+    img: '/images/speakers/artem-agarkov.jpg',
+    imgPosition: 'center 20%',
+    time: '10:00–18:00',
+    location: 'Эйр-парк',
+    lecture: 'Судья в интерактивной зоне СберСпота',
+  },
+  {
+    name: 'Григорий Усенко',
+    role: 'Призёр Кубков мира по агрессивным роликам по версии FISE World, один из наиболее известных российских спортсменов в дисциплине Aggressive Inline Park',
+    accent: null,
+    img: '/images/speakers/grigory-usenko.jpg',
+    imgPosition: 'center 20%',
+    time: '10:00–18:00',
+    location: 'Эйр-парк',
+    lecture: 'Судья в интерактивной зоне СберСпота',
+  },
+  {
+    name: 'Влад Самокатчик',
+    role: 'Один из наиболее узнаваемых райдеров российской самокатной сцены, автор YouTube-канала «Влад Самокатчик» — 16+ млн подписчиков',
+    accent: null,
+    img: '/images/speakers/vlad-samokatchik.jpg',
+    imgPosition: 'center 20%',
+    time: '10:00–18:00',
+    location: 'Эйр-парк',
+    lecture: 'Судья в интерактивной зоне СберСпота',
+  },
 ]
 
 function SpeakerCard({ sp }: { sp: Speaker }) {

@@ -65,6 +65,9 @@ export const SPEAKER_IMAGE_URLS = [
   '/images/speakers/matvey-sharygin.jpg',
   '/images/speakers/andrey-skvortsov.jpg',
   '/images/speakers/artem-kuznetsov.jpg',
+  '/images/speakers/artem-agarkov.jpg',
+  '/images/speakers/grigory-usenko.jpg',
+  '/images/speakers/vlad-samokatchik.jpg',
 ] as const
 
 export const PRIORITY_IMAGE_URLS = [
