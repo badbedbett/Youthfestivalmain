@@ -598,12 +598,12 @@ export default function Speakers() {
 
       <style>{`
         .speaker-flip-container {
-          height: 320px;
+          height: 228px;
         }
         .speaker-featured {
           grid-column: span 2;
           grid-row: span 2;
-          min-height: calc(320px * 2 + 10px);
+          min-height: calc(228px * 2 + 10px);
           height: auto;
         }
         .speaker-featured .speaker-front {
@@ -664,11 +664,11 @@ export default function Speakers() {
           position: absolute;
           inset: 0;
           border-radius: 14px;
-          padding: 16px 14px;
+          padding: 14px 12px;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 10px;
+          gap: 8px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
         }
@@ -684,6 +684,8 @@ export default function Speakers() {
         }
         @media (max-width: 1100px) {
           .speakers-grid { grid-template-columns: repeat(4, 1fr) !important; }
+          .speaker-flip-container { height: 212px; }
+          .speaker-featured { min-height: calc(212px * 2 + 10px); }
         }
         @media (max-width: 700px) {
           .speakers-grid { grid-template-columns: repeat(3, 1fr) !important; }
@@ -694,10 +696,11 @@ export default function Speakers() {
         }
         @media (max-width: 480px) {
           .speakers-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .speaker-flip-container { height: 240px; }
           .speaker-featured {
             grid-column: span 2;
             grid-row: span 2;
-            min-height: calc(320px * 2 + 10px);
+            min-height: calc(240px * 2 + 10px);
           }
           .speaker-featured-name {
             font-size: clamp(20px, 7vw, 28px);
