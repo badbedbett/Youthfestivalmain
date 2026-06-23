@@ -22,7 +22,7 @@ const programSections: { label: string; href: string }[] = [
 const links: NavLink[] = [
   { label: 'О событии', href: '#about' },
   { label: 'Программа', href: '#programs', children: programSections },
-  { label: 'Спикеры', href: '#speakers' },
+  { label: 'Люди фестиваля', href: '#speakers' },
   { label: 'Вопросы', href: '#faq' },
 ]
 
