@@ -60,6 +60,7 @@ export const SPEAKER_IMAGE_URLS = [
   '/images/speakers/hopeles.jpg',
   '/images/speakers/mayls.jpg',
   '/images/speakers/maikryz.jpg',
+  '/images/speakers/paru-nochey.jpg',
   '/images/speakers/yasmin-buali.jpg',
   '/images/speakers/lera-veiv.jpg',
   '/images/speakers/dmitry-yakovlev.jpg',
