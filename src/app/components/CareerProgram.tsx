@@ -4,8 +4,9 @@ import { programImg } from '../data/programImages'
 import careerPartnerLogo from '../../imports/career-partner-logo.png'
 
 const MINISTRY = 'Министерство труда, занятости и социальной защиты РТ'
-const RABOTA_ROSSII = 'Работа России'
-const BRIDGE_CAREER_PARTNERS = [MINISTRY, RABOTA_ROSSII] as const
+const WORK_RUSSIA = 'Работа России'
+const MILLENNIUM_PLACE = 'Площадка карьеры под мостом Миллениум'
+const MILLENNIUM_PARTNERS = [MINISTRY, WORK_RUSSIA] as const
 const CAREER_PLACE = 'Площадка карьеры на зелёном поле'
 const CAREER_PARTNERS = ['Мэрия г. Казани', 'hh.ru'] as const
 
@@ -170,47 +171,47 @@ const careerActivities = [
   },
   {
     id: 11,
-    title: 'Ярмарка трудоустройства',
+    title: 'Всероссийская ярмарка трудоустройства',
     time: '10:00 – 20:00',
-    place: 'Площадка карьеры под мостом Миллениум',
+    place: MILLENNIUM_PLACE,
     desc: 'Более 30 предприятий Татарстана с вакансиями и стажировками. Получи консультацию, пройди собеседование и попробуй свои силы в деле — прямо на площадке.',
     img: programImg('career', 'fair'),
-    partners: [...BRIDGE_CAREER_PARTNERS],
+    partners: [...MILLENNIUM_PARTNERS],
     tags: [],
   },
   {
     id: 12,
     title: 'VR-тренажёры настоящих профессий',
     time: '10:00 – 20:00',
-    place: 'Площадка карьеры под мостом Миллениум',
+    place: MILLENNIUM_PLACE,
     desc: `Интерактивный стенд с VR-тренажёрами, где можно примерить 10 профессий — от пожарного до кондитера.
 
 Площадка «Натальной карьеры», где после прохождения теста на профориентацию можно получить предсказание по вашей будущей карьере в специальной магической зоне.`,
     img: null,
-    partners: [...BRIDGE_CAREER_PARTNERS],
-    tags: ['VR', 'Профессии'],
+    partners: [...MILLENNIUM_PARTNERS],
+    tags: [],
   },
   {
     id: 15,
     title: 'Магазин профессий',
     time: '10:00 – 20:00',
-    place: 'Площадка карьеры под мостом Миллениум',
+    place: MILLENNIUM_PLACE,
     desc: `Шесть огромных витрин-блистеров с атрибутами реальных профессий: примерь форму повара, сварщика или полицейского.
 
 Живи и работай в Татарстане. Новая настольная игра, в которой можно покупать реальные предприятия Татарстана, обучать своих сотрудников и узнать больше о мерах поддержки для вашей карьеры или бизнеса`,
     img: null,
-    partners: [...BRIDGE_CAREER_PARTNERS],
-    tags: ['Фотозона', 'Профориентация', 'Костюмы'],
+    partners: [...MILLENNIUM_PARTNERS],
+    tags: [],
   },
   {
     id: 13,
     title: 'Выставка техники',
     time: '10:00 – 20:00',
-    place: 'Площадка карьеры под мостом Миллениум',
+    place: MILLENNIUM_PLACE,
     desc: 'Вертолёт «Ансат», пожарная машина, ретро-автобус Икарус и спортивный КАМАЗ — всё можно посмотреть и потрогать. Профессионалы расскажут о своей работе и ответят на вопросы.',
     img: programImg('career', 'tech'),
-    partners: [...BRIDGE_CAREER_PARTNERS],
-    tags: ['Интерактивы', 'Профессии'],
+    partners: [...MILLENNIUM_PARTNERS],
+    tags: [],
   },
 ]
 
